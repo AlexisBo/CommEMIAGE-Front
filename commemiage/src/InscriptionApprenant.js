@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class CreationModule extends Component {
+class InscriptionApprenant extends Component {
 
     constructor() {
         super();
@@ -12,7 +12,7 @@ class CreationModule extends Component {
         const data = new FormData(event.target);
         console.log('Submited');
         
-        fetch('localhost:3010/modules/add', {
+        fetch('localhost:3010/apprenant/add', {
           method: 'POST',
           body: data,
         });
@@ -20,10 +20,10 @@ class CreationModule extends Component {
 
     render() {
         return (
-            <div class="creation-module col-md-6">
+            <div class="inscription-apprenant col-md-6">
                 <div class="panel panel-default" style={{ border: "1px solid grey", padding: 10 + 'px'}}>
                     <div class="panel-header">
-                        <h4 class="title">Création d'un module</h4>
+                        <h4 class="title">Inscription de l'apprenant</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
                         <div class="panel-body">
@@ -49,4 +49,4 @@ class CreationModule extends Component {
     }
 }
 
-export default CreationModule
+export default InscriptionApprenant
