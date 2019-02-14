@@ -12,7 +12,7 @@ class InscriptionApprenant extends Component {
         const data = new FormData(event.target);
         console.log('Submited');
         
-        fetch('localhost:3010/apprenant/add', {
+        fetch('http://localhost:3010/apprenant/add', {
           method: 'POST',
           body: data,
         });
