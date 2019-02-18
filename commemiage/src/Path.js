@@ -4,6 +4,7 @@ import CreationModule from "./CreationModule";
 import ChoixModuleSemestre from "./ChoixModuleSemestre";
 import CreationFiliere from "./CreationFiliere";
 import InscriptionApprenant from "./InscriptionApprenant";
+import AttributionTuteur from "./AttributionTuteur";
 
 const Path = () => (
   <Router>
@@ -19,6 +20,9 @@ const Path = () => (
           <Link to="/creationfiliere">Création filière</Link>
         </li>
         <li>
+          <Link to="/attributiontuteur">Attribution tuteur</Link>
+        </li>
+        <li>
           <Link to="/inscriptionapprenant">S'inscrire</Link>
         </li>
         <li>
@@ -30,9 +34,10 @@ const Path = () => (
 
       <Route exact path="/" component={Home} />
       <Route path="/creationmodule" component={CreationModule} />
-      <Route path="/choixmodulesemestre" component={ChoixModuleSemestre} />
       <Route path="/creationfiliere" component={CreationFiliere} />
+      <Route path="/attributiontuteur" component={AttributionTuteur} />
       <Route path="/inscriptionapprenant" component={InscriptionApprenant} />
+      <Route path="/choixmodulesemestre" component={ChoixModuleSemestre} />
     </div>
   </Router>
 );
