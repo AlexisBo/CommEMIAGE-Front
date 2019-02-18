@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Description de l'application
+
+Cette application a pour but d'établir un suivi des étudiant inscrits à l'e-MIAGE.
+L'intérêt est de se passer des fichiers excel et de se consacrer à l'utilisation d'une application dynamique regroupant toutes les fonctionnalités nécessaires au bon suivi des étudiant d'e-MIAGE.
+Actuellement dans l'application il est possible de s'inscrire en tant qu'étudiant, de créer un module, une filière, d'attribuer un tuteur à un module, de choisir des modules par semestres.
+
+Les commandes nécessaires à l'execution de l'application se trouvent ci-dessous.
+
 ## Available Scripts
 
 In the project directory, you can run:
