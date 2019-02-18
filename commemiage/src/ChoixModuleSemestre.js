@@ -25,7 +25,7 @@ class ChoixModuleSemestre extends Component {
             method: 'POST',
             body: JSON.stringify({
                 nom: this.state.nom,
-                coefficient: this.state.module,
+                module: this.state.module,
             }),
             headers: {"Content-Type": "application/json"}
           })
