@@ -7,8 +7,7 @@ class CreationFiliere extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             nom: '',
-            coefficient: '',
-            seuil: ''
+            module: ''
           }
       }
     
@@ -18,15 +17,13 @@ class CreationFiliere extends Component {
         console.log('handleSubmit');
         console.log('check data',this.state);
         console.log('check data json',JSON.stringify({
-            nom: this.state.nom,
-            module: this.state.module
+            nom: this.state.nom
           }));
 
           fetch('http://localhost:3010/filieres/add',{
             method: 'POST',
             body: JSON.stringify({
-                nom: this.state.nom,
-                module: this.state.module,
+                nom: this.state.nom
             }),
             headers: {"Content-Type": "application/json"}
           })

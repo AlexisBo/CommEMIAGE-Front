@@ -51,7 +51,7 @@ class ChoixModuleSemestre extends Component {
                                         <label htmlFor="nom">2019 : Semestre 1</label>
                                         <input type="hidden" id="nom" name="nom" value="2019Semestre 1"/>
                                         
-                                        <select multiple className="form-control" id="module" name="module">
+                                        <select multiple className="form-control" name="module">
                                             <option value="module1">Module 1</option>
                                             <option value="module2">Module 2</option>
                                             <option value="module3">Module 3</option>
@@ -61,7 +61,7 @@ class ChoixModuleSemestre extends Component {
                                         <label htmlFor="nom">2020 : Semestre 1</label>
                                         <input type="hidden" id="nom" name="nom" value="2020Semestre 1"/>
                                         
-                                        <select multiple className="form-control" id="module" name="module">
+                                        <select multiple className="form-control" name="module">
                                             <option value="module1">Module 1</option>
                                             <option value="module2">Module 2</option>
                                             <option value="module3">Module 3</option>
@@ -72,7 +72,7 @@ class ChoixModuleSemestre extends Component {
                                         <label htmlFor="nom">2019 : Semestre 2</label>
                                         <input type="hidden" id="nom" name="nom" value="2019Semestre 2"/>
                                         
-                                        <select multiple className="form-control" id="module" name="module">
+                                        <select multiple className="form-control" name="module">
                                             <option value="module1">Module 1</option>
                                             <option value="module2">Module 2</option>
                                             <option value="module3">Module 3</option>
@@ -82,7 +82,7 @@ class ChoixModuleSemestre extends Component {
                                         <label htmlFor="nom">2020 : Semestre 2</label>
                                         <input type="hidden" id="nom" name="nom" value="2020Semestre 2"/>
                                         
-                                        <select multiple className="form-control" id="module" name="module">
+                                        <select multiple className="form-control" name="module">
                                             <option value="module1">Module 1</option>
                                             <option value="module2">Module 2</option>
                                             <option value="module3">Module 3</option>
