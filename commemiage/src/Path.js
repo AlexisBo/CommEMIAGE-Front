@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CreationModule from "./CreationModule";
+import ChoixModuleSemestre from "./ChoixModuleSemestre";
+import CreationFiliere from "./CreationFiliere";
 import InscriptionApprenant from "./InscriptionApprenant";
 
 const Path = () => (
@@ -14,7 +16,13 @@ const Path = () => (
           <Link to="/creationmodule">Création module</Link>
         </li>
         <li>
+          <Link to="/creationfiliere">Création filière</Link>
+        </li>
+        <li>
           <Link to="/inscriptionapprenant">S'inscrire</Link>
+        </li>
+        <li>
+          <Link to="/choixmodulesemestre">Choix modules</Link>
         </li>
       </ul>
 
@@ -22,6 +30,8 @@ const Path = () => (
 
       <Route exact path="/" component={Home} />
       <Route path="/creationmodule" component={CreationModule} />
+      <Route path="/choixmodulesemestre" component={ChoixModuleSemestre} />
+      <Route path="/creationfiliere" component={CreationFiliere} />
       <Route path="/inscriptionapprenant" component={InscriptionApprenant} />
     </div>
   </Router>
