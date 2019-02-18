@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class CreationModule extends Component {
+class CreationFiliere extends Component {
 
     constructor() {
         super();
@@ -19,16 +19,14 @@ class CreationModule extends Component {
         console.log('check data',this.state);
         console.log('check data json',JSON.stringify({
             nom: this.state.nom,
-            coefficient: this.state.coefficient,
-            seuil: this.state.seuil
+            module: this.state.module
           }));
 
-          fetch('http://localhost:3010/modules/add',{
+          fetch('http://localhost:3010/filieres/add',{
             method: 'POST',
             body: JSON.stringify({
                 nom: this.state.nom,
-                coefficient: this.state.coefficient,
-                seuil: this.state.seuil
+                module: this.state.module,
             }),
             headers: {"Content-Type": "application/json"}
           })
@@ -38,37 +36,37 @@ class CreationModule extends Component {
           }).then(function(body){
             console.log(body);
           });
-    }
+    }  
 
     render() {
         return (
-            <div className="creation-module col-md-6">
+            <div className="creation-filiere col-md-6">
                 <div className="panel panel-default" style={{ border: "1px solid grey", padding: 10 + 'px'}}>
                     <div className="panel-header">
-                        <h4 className="title">Création d'un module</h4>
+                        <h4 className="title">Création d'une filière</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
                         <div className="panel-body">
 
-                            <label htmlFor="nom">Saisir le nom du module</label>
-                            <input type="text" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} className="form-control" id="nom" name="nom"/>
+                            <label htmlFor="nom">Saisir le nom de la filière</label>
+                            <input type="text" className="form-control" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} id="nom" name="nom"/>
                             
-                            <label htmlFor="coefficient">Saisir le coefficient</label>
-                            <input type="text" value={this.state.coefficient} onChange={(ev)=>this.setState({coefficient:ev.target.value})} className="form-control" id="coefficient" name="coefficient"/>
-                            
-                            <label htmlFor="seuil">Saisir seuil de rattrapage</label>
-                            <input type="text" value={this.state.seuil} onChange={(ev)=>this.setState({seuil:ev.target.value})} className="form-control" id="seuil" name="seuil"/>                        
+                            <label htmlFor="module">Modules :</label>
+                            <select multiple className="form-control" id="module" name="module">
+                                <option value="module1">Module 1</option>
+                                <option value="module2">Module 2</option>
+                                <option value="module3">Module 3</option>
+                                <option value="module4">Module 4</option>
+                            </select>                       
                         </div>
                         <div className="panel-footer">
-                            <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Création module </button>
+                            <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Création filière </button>
                         </div>
                     </form>
                 </div>
             </div>
         )
-            
-
     }
 }
 
-export default CreationModule
+export default CreationFiliere

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import CreationModule from './CreationModule';
 import Path from './Path';
 
 

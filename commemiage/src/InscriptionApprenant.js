@@ -71,14 +71,6 @@ class InscriptionApprenant extends Component {
                                 <option value="filiere2">Filière 2</option>
                                 <option value="filiere3">Filière 3</option>
                             </select>
-
-                            <label htmlFor="module">Modules :</label>
-                            <select multiple className="form-control" id="module" name="module">
-                                <option value="module1">Module 1</option>
-                                <option value="module2">Module 2</option>
-                                <option value="module3">Module 3</option>
-                                <option value="module4">Module 4</option>
-                            </select>
                         </div>
                         <div className="panel-footer">
                             <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>S'inscrire </button>
