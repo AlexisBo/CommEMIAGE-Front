@@ -7,7 +7,7 @@ class AttributionTuteur extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             nom: '',
-            module: ''
+            tuteur: ''
           }
       }
     

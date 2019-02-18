@@ -9,27 +9,26 @@ import AttributionTuteur from "./AttributionTuteur";
 const Path = () => (
   <Router>
     <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
+      <ul className="list-inline">
+        <li className="list-inline-item">
+          <u style={{color: "blue"}}><Link to="/">Home</Link></u>
         </li>
-        <li>
-          <Link to="/creationmodule">Création module</Link>
+        <li className="list-inline-item">
+          <u style={{color: "blue"}}><Link to="/creationmodule">Création module</Link></u>
         </li>
-        <li>
-          <Link to="/creationfiliere">Création filière</Link>
+        <li className="list-inline-item">
+          <u style={{color: "blue"}}><Link to="/creationfiliere">Création filière</Link></u>
         </li>
-        <li>
-          <Link to="/attributiontuteur">Attribution tuteur</Link>
+        <li className="list-inline-item">
+          <u style={{color: "blue"}}><Link to="/attributiontuteur">Attribution tuteur</Link></u>
         </li>
-        <li>
-          <Link to="/inscriptionapprenant">S'inscrire</Link>
+        <li className="list-inline-item">
+          <u style={{color: "blue"}}><Link to="/inscriptionapprenant">S'inscrire</Link></u>
         </li>
-        <li>
-          <Link to="/choixmodulesemestre">Choix modules</Link>
+        <li className="list-inline-item">
+          <u style={{color: "blue"}}><Link to="/choixmodulesemestre">Choix modules</Link></u>
         </li>
       </ul>
-
       <hr />
 
       <Route exact path="/" component={Home} />
