@@ -15,7 +15,25 @@ class CreationFiliere extends Component {
             }],
             moduleGet : []
         };
-      }
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount - Creation Filiere');
+        let currentComponent = this;
+        
+        fetch('http://localhost:3010/modules/')
+        .then((resp) => resp.json())
+        .then(function(data) {
+            console.log("data get: "+ data);
+            var list = [];
+            data.forEach(function(module) {
+                console.log(module);
+                list.push({label:module.nom,value:module.nom})
+            });
+            
+            currentComponent.setState({moduleGet : list});
+        })
+    }
     
     handleSubmit(event) {
         event.preventDefault();
@@ -44,24 +62,6 @@ class CreationFiliere extends Component {
             console.log(body);
           });
     } 
-
-    componentDidMount() {
-        console.log('componentDidMount');
-        let currentComponent = this;
-        
-        fetch('http://localhost:3010/modules/')
-        .then((resp) => resp.json())
-        .then(function(data) {
-            console.log("data get: "+ data);
-            var list = [];
-            data.forEach(function(module) {
-                console.log(module);
-                list.push({label:module.nom,value:module.nom})
-              });
-              
-            currentComponent.setState({moduleGet : list});
-        })
-    }
 
     handleChange = (module) => {
         var list = [];
