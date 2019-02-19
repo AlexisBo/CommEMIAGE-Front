@@ -37,6 +37,10 @@ class ChoixModuleSemestre extends Component {
           });
     } 
 
+    semestreRender(){
+        
+    }
+
     render() {
         return (
             <div className="choix-module col-md-6">
