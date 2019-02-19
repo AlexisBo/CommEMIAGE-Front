@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Select from 'react-select';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class CreationFiliere extends Component {
 
@@ -7,8 +9,12 @@ class CreationFiliere extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             nom: '',
-            module: ''
-          }
+            description: '',
+            module : [{
+                nom : ''
+            }],
+            moduleGet : []
+        };
       }
     
     handleSubmit(event) {
@@ -17,13 +23,17 @@ class CreationFiliere extends Component {
         console.log('handleSubmit');
         console.log('check data',this.state);
         console.log('check data json',JSON.stringify({
-            nom: this.state.nom
+            nom: this.state.nom,
+            description: this.state.description,
+            module: this.state.module,
           }));
 
           fetch('http://localhost:3010/filieres/add',{
             method: 'POST',
             body: JSON.stringify({
-                nom: this.state.nom
+                nom: this.state.nom,
+                description: this.state.description,
+                module: this.state.module,
             }),
             headers: {"Content-Type": "application/json"}
           })
@@ -33,9 +43,37 @@ class CreationFiliere extends Component {
           }).then(function(body){
             console.log(body);
           });
-    }  
+    } 
+
+    componentDidMount() {
+        console.log('componentDidMount');
+        let currentComponent = this;
+        
+        fetch('http://localhost:3010/modules/')
+        .then((resp) => resp.json())
+        .then(function(data) {
+            console.log("data get: "+ data);
+            var list = [];
+            data.forEach(function(module) {
+                console.log(module);
+                list.push({label:module.nom,value:module.nom})
+              });
+              
+            currentComponent.setState({moduleGet : list});
+        })
+    }
+
+    handleChange = (module) => {
+        var list = [];
+        module.forEach(function(module) {
+            list.push({nom:module.value})
+          });
+        this.setState({ module:list });
+    }
 
     render() {
+        const { module } = this.state.module;
+
         return (
             <div className="creation-filiere col-md-6">
                 <div className="panel panel-default" style={{ border: "1px solid grey", padding: 10 + 'px'}}>
@@ -47,14 +85,14 @@ class CreationFiliere extends Component {
 
                             <label htmlFor="nom">Saisir le nom de la filière</label>
                             <input type="text" className="form-control" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} id="nom" name="nom"/>
+
+                            <label htmlFor="nom">Saisir la description de la filière</label>
+                            <input type="text" className="form-control" value={this.state.description} onChange={(ev)=>this.setState({description:ev.target.value})} id="description" name="description"/>
                             
                             <label htmlFor="module">Modules :</label>
-                            <select multiple className="form-control" id="module" name="module">
-                                <option value="module1">Module 1</option>
-                                <option value="module2">Module 2</option>
-                                <option value="module3">Module 3</option>
-                                <option value="module4">Module 4</option>
-                            </select>                       
+                            <React.Fragment>
+                                <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleChange} isMulti />
+                            </React.Fragment>                      
                         </div>
                         <div className="panel-footer">
                             <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Création filière </button>
