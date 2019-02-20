@@ -12,7 +12,8 @@ class InscriptionApprenant extends Component {
             prenom : '',
             adresse : '',
             email : '',
-            filiere : {nom:''},
+            filiere : {filiereId:'',nom:''},
+            semestre : [],
             filiereGet : []
           }
     }
@@ -28,10 +29,18 @@ class InscriptionApprenant extends Component {
             var list = [];
             data.forEach(function(filiere) {
                 console.log(filiere);
-                list.push({label:filiere.nom,value:filiere.nom})
+                list.push({label:filiere.nom,value:filiere._id})
             });
             
             currentComponent.setState({filiereGet : list});
+        })
+
+        fetch('http://localhost:3010/semestres/')
+        .then((resp) => resp.json())
+        .then(function(semestre) {
+            console.log("semestre get: "+ semestre);
+            
+            currentComponent.setState({semestre : semestre});
         })
     }
     
@@ -45,7 +54,8 @@ class InscriptionApprenant extends Component {
             prenom : this.state.prenom,
             adresse : this.state.adresse,
             email : this.state.email,
-            filiere : this.state.filiere
+            filiere : this.state.filiere,
+            semestre : this.state.semestre
         }));
 
         fetch('http://localhost:3010/apprenants/add',{
@@ -55,7 +65,8 @@ class InscriptionApprenant extends Component {
                 prenom : this.state.prenom,
                 adresse : this.state.adresse,
                 email : this.state.email,
-                filiere : this.state.filiere
+                filiere : this.state.filiere,
+                semestre : this.state.semestre
         }),
         headers: {"Content-Type": "application/json"}
         })
@@ -68,7 +79,7 @@ class InscriptionApprenant extends Component {
     }
 
     handleChange = (filiere) => {
-        this.setState({ filiere:{nom:filiere.value} });
+        this.setState({ filiere:{filiereId:filiere.value,nom:filiere.label} });
     }
 
     render() {
