@@ -90,9 +90,7 @@ class CreationFiliere extends Component {
                             <input type="text" className="form-control" value={this.state.description} onChange={(ev)=>this.setState({description:ev.target.value})} id="description" name="description"/>
                             
                             <label htmlFor="module">Modules :</label>
-                            <React.Fragment>
-                                <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleChange} isMulti />
-                            </React.Fragment>                      
+                            <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleChange} isMulti />                  
                         </div>
                         <div className="panel-footer">
                             <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Création filière </button>
