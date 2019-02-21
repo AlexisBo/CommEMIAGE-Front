@@ -5,6 +5,7 @@ import ChoixModuleSemestre from "./ChoixModuleSemestre";
 import CreationFiliere from "./CreationFiliere";
 import InscriptionApprenant from "./InscriptionApprenant";
 import AttributionTuteur from "./AttributionTuteur";
+import NewTuteur from "./NewTuteur";
 
 const Path = () => (
   <Router>
@@ -14,19 +15,22 @@ const Path = () => (
           <u style={{color: "blue"}}><Link to="/">Home</Link></u>
         </li>
         <li className="list-inline-item">
-          <u style={{color: "blue"}}><Link to="/creationmodule">Création module</Link></u>
+          <u style={{color: "blue"}}><Link to="/inscriptionapprenant">S'inscrire</Link></u>
         </li>
         <li className="list-inline-item">
           <u style={{color: "blue"}}><Link to="/creationfiliere">Création filière</Link></u>
         </li>
         <li className="list-inline-item">
-          <u style={{color: "blue"}}><Link to="/attributiontuteur">Attribution tuteur</Link></u>
-        </li>
-        <li className="list-inline-item">
-          <u style={{color: "blue"}}><Link to="/inscriptionapprenant">S'inscrire</Link></u>
+          <u style={{color: "blue"}}><Link to="/creationmodule">Création module</Link></u>
         </li>
         <li className="list-inline-item">
           <u style={{color: "blue"}}><Link to="/choixmodulesemestre">Choix modules</Link></u>
+        </li>
+        <li className="list-inline-item">
+          <u style={{color: "blue"}}><Link to="/newtuteur">Création Tuteur</Link></u>
+        </li>
+        <li className="list-inline-item">
+          <u style={{color: "blue"}}><Link to="/attributiontuteur">Attribution tuteur</Link></u>
         </li>
       </ul>
       <hr />
@@ -37,6 +41,7 @@ const Path = () => (
       <Route path="/attributiontuteur" component={AttributionTuteur} />
       <Route path="/inscriptionapprenant" component={InscriptionApprenant} />
       <Route path="/choixmodulesemestre" component={ChoixModuleSemestre} />
+      <Route path="/newtuteur" component={NewTuteur} />
     </div>
   </Router>
 );
