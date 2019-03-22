@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 class CreationFiliere extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             nom: '',
@@ -15,6 +15,12 @@ class CreationFiliere extends Component {
             }],
             moduleGet : []
         };
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+            console.log('componentDidUpdate - prevProps : ' + prevProps);
+            console.log('componentDidUpdate - prevState : '+ prevState);
+
     }
 
     componentDidMount() {

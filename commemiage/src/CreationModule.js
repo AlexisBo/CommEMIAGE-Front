@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 class CreationModule extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             nom: '',
