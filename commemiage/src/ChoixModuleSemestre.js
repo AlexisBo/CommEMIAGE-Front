@@ -4,12 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 class ChoixModuleSemestre extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
-            apprenantId:'5c77ee6a55fe3928bceaf763',
+            apprenantId:'5c94d2732fc9303d60242bd0',
             apprenant: {
                 nom: '',
                 prenom : '',
@@ -57,6 +57,7 @@ class ChoixModuleSemestre extends Component {
                 provisoire.push(mods);
             });
             console.log("provisoire: "+ JSON.stringify(provisoire));
+            //provisoire = [[{"label":"Module 1"}],[],[{"label":"Module 2"}],[],[{"label":"Module 3"}],[]];
             currentComponent.setState({moduleProvisoire : provisoire});
 
             fetch('http://localhost:3010/filieres/get/' + apprenant.filiere.filiereId)
@@ -107,7 +108,8 @@ class ChoixModuleSemestre extends Component {
         let apprenant = this.state.apprenant;
         apprenant.semestre[index].module=modules;
         let provisoire = this.state.moduleProvisoire;
-        provisoire[index] = list;
+        provisoire[index] = list;   
+
         this.setState({moduleProvisoire:provisoire, apprenant:apprenant});
     }
 

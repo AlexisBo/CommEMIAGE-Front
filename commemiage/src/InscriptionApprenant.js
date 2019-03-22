@@ -4,14 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 class InscriptionApprenant extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             nom: '',
             prenom : '',
             adresse : '',
             email : '',
+            password : '',
+            confPassword : '',
             filiere : {filiereId:'',nom:''},
             semestre : [],
             filiereGet : []
@@ -46,6 +48,7 @@ class InscriptionApprenant extends Component {
     
     handleSubmit(event) {
         event.preventDefault();
+        let currentComponent = this;
 
         console.log('handleSubmit');
         console.log('check data',this.state);
@@ -58,24 +61,44 @@ class InscriptionApprenant extends Component {
             semestre : this.state.semestre
         }));
 
-        fetch('http://localhost:3010/apprenants/add',{
-            method: 'POST',
-            body: JSON.stringify({
-                nom: this.state.nom,
-                prenom : this.state.prenom,
-                adresse : this.state.adresse,
-                email : this.state.email,
-                filiere : this.state.filiere,
-                semestre : this.state.semestre
-        }),
-        headers: {"Content-Type": "application/json"}
-        })
-        .then(function(response){
-            console.log(response => response.json());
-            return response => response.json()
-        }).then(function(body){
-            console.log(body);
-        });
+        if(this.state.password === this.state.confPassword){
+
+            fetch('http://localhost:3010/apprenants/add',{
+                method: 'POST',
+                body: JSON.stringify({
+                    nom: this.state.nom,
+                    prenom : this.state.prenom,
+                    adresse : this.state.adresse,
+                    email : this.state.email,
+                    filiere : this.state.filiere,
+                    semestre : this.state.semestre
+            }),
+            headers: {"Content-Type": "application/json"}
+            })
+            .then(function(response){
+                console.log(response => response.json());
+                return response => response.json()
+            }).then(function(body){
+                console.log(body);
+                fetch('http://localhost:3010/utilisateurs/add',{
+                method: 'POST',
+                body: JSON.stringify({
+                    role: "Apprenant",
+                    email : currentComponent.state.email,
+                    password : currentComponent.state.password
+                }),
+                headers: {"Content-Type": "application/json"}
+                })
+                .then(function(response){
+                    console.log(response => response.json());
+                    return response => response.json()
+                    //this.props.token();
+                }).then(function(body){
+                    console.log(body);
+                });
+            });
+
+        }
     }
 
     handleChange = (filiere) => {
@@ -105,6 +128,12 @@ class InscriptionApprenant extends Component {
 
                             <label htmlFor="mail">Adresse mail :</label>
                             <input type="text" value={this.state.email} onChange={(ev)=>this.setState({email:ev.target.value})} className="form-control" id="email" name="email"/>
+
+                            <label htmlFor="password">Mot de passe :</label>
+                            <input type="password" value={this.state.password} onChange={(ev)=>this.setState({password:ev.target.value})} className="form-control" id="password" name="password"/>
+
+                            <label htmlFor="confPassword">Confirmation du mot de passe :</label>
+                            <input type="password" value={this.state.confPassword} onChange={(ev)=>this.setState({confPassword:ev.target.value})} className="form-control" id="confPassword" name="confPassword"/>
 
                             <label htmlFor="filiere">Filière :</label>
                             <Select id="filiere" options={ this.state.filiereGet } value={filiere} onChange={this.handleChange} name="filiere" />

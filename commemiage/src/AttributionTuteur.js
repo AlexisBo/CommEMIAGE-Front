@@ -1,12 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Select from 'react-select';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class AttributionTuteur extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             module: [{
+                _id : '',
                 nom : '',
                 coefficient: '',
                 seuil: '',
@@ -24,17 +27,18 @@ class AttributionTuteur extends Component {
                     dateFin : ''
                 }]
           }],
-          semestre: [{
+          semestreGet: [{
               nom : '',
               dateDebut : '',
               dateFin : ''
           }],
-          moduleGet:[]
+          filiereGet:[],
+          tuteurGet:[]
         }
     }
 
     componentDidMount() {
-        console.log('componentDidMount - Creation Filiere');
+        console.log('componentDidMount - Attribution Tuteur');
         let currentComponent = this;
         
         fetch('http://localhost:3010/modules/')
@@ -42,19 +46,48 @@ class AttributionTuteur extends Component {
         .then(function(module) {
             console.log("module get: "+ module);
             var list = [];
-            module.forEach(function(module) {
-                console.log(module);
-                list.push({label:module.nom,value:module.nom})
+            module.forEach(function(mod) {
+                console.log("mod:"+JSON.stringify(mod));
+                list.push(mod);
             });
-            
-            currentComponent.setState({moduleGet : list});   
-            currentComponent.setState({module : module});
+            currentComponent.setState({module : list});
         })
 
         fetch('http://localhost:3010/semestres/')
         .then((resp) => resp.json())
-        .then(function(semestre) {            
-            currentComponent.setState({semestre : semestre});
+        .then(function(semestre) {      
+            console.log("semestre get: "+ semestre);
+            var list = [];
+            semestre.forEach(function(s) {
+                list.push(s);
+            });      
+            currentComponent.setState({semestreGet : list});
+        })
+
+        fetch('http://localhost:3010/filieres/')
+        .then((resp) => resp.json())
+        .then(function(filiere) {
+            console.log("filiere get: "+ filiere);
+            var list = [];
+            filiere.forEach(function(filiere) {
+                console.log(filiere);
+                list.push({label:filiere.nom,value:filiere.nom})
+            });
+            
+            currentComponent.setState({filiereGet : list});
+        })
+
+        fetch('http://localhost:3010/tuteurs/')
+        .then((resp) => resp.json())
+        .then(function(tuteur) {
+            console.log("tuteur get: "+ tuteur);
+            var list = [];
+            tuteur.forEach(function(tuteur) {
+                console.log(tuteur);
+                list.push({label:tuteur.nom,value:{tuteurId:tuteur._id, nom:tuteur.nom, prenom:tuteur.prenom}})
+            });
+            
+            currentComponent.setState({tuteurGet : list});
         })
     }
     
@@ -64,15 +97,13 @@ class AttributionTuteur extends Component {
         console.log('handleSubmit');
         console.log('check data',this.state);
         console.log('check data json',JSON.stringify({
-            nom: this.state.nom,
-            tuteur: this.state.tuteur
-          }));
+            module: this.state.module
+        }));
 
-          fetch('http://localhost:3010/semestres/add',{
-            method: 'POST',
+          fetch('http://localhost:3010/modules/update',{
+            method: 'PUT',
             body: JSON.stringify({
-                nom: this.state.nom,
-                tuteur: this.state.tuteur
+                module: this.state.module
             }),
             headers: {"Content-Type": "application/json"}
           })
@@ -84,25 +115,33 @@ class AttributionTuteur extends Component {
           });
     } 
 
+    handleFiliereChange = (filiere, index) => {
+        var module = this.state.module;
+        module[index].filiere = filiere;
+        this.setState({ module: module});
+    }
+
+    handleTuteurChange = (tuteur, index) => {
+        var module = this.state.module;
+        module[index].tuteur = tuteur;
+        this.setState({ module: module});
+    }
+
     render() {
 
         var modules = this.state.module.map( (module,index) => {
+            //const { tuteur } = this.state.module[index].tuteur;
             return (
                 <div>
-                    <label htmlFor="nom">{module.nom}</label>
-                    <input type="hidden" id="nom" name="nom" value={module.nom}/>
+                    <label htmlFor={module.nom}>{module.nom}</label>
+                    <input type="hidden" id={module.nom} name={module.nom} value={module.nom}/>
                     
-                    <select className="form-control" name="tuteur">
-                        <option value="tuteur1">Tuteur 1</option>
-                        <option value="tuteur2">Tuteur 2</option>
-                        <option value="tuteur3">Tuteur 3</option>
-                        <option value="tuteur4">Tuteur 4</option>
-                    </select>
+                    <Select name="tuteur" options={ this.state.tuteurGet } /*value={tuteur}*/ onChange={(ev)=>this.handleTuteurChange(ev, index)} />  
                 </div>
             )
         });
 
-        var semestres = this.state.semestre.map( (semestre,index) => {
+        var semestres = this.state.semestreGet.map( (semestre,index) => {
             return (
                 <div className="panel-body">
                     <div className="row">

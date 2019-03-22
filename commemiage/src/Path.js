@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Login from "./Login";
 import CreationModule from "./CreationModule";
 import ChoixModuleSemestre from "./ChoixModuleSemestre";
 import CreationFiliere from "./CreationFiliere";
@@ -13,6 +14,9 @@ const Path = () => (
       <ul className="list-inline">
         <li className="list-inline-item">
           <u style={{color: "blue"}}><Link to="/">Home</Link></u>
+        </li>
+        <li className="list-inline-item">
+          <u style={{color: "blue"}}><Link to="/login">Connexion</Link></u>
         </li>
         <li className="list-inline-item">
           <u style={{color: "blue"}}><Link to="/inscriptionapprenant">S'inscrire</Link></u>
@@ -37,6 +41,7 @@ const Path = () => (
 
       <Route exact path="/" component={Home} />
       <Route path="/creationmodule" component={CreationModule} />
+      <Route path="/login" component={Login} />
       <Route path="/creationfiliere" component={CreationFiliere} />
       <Route path="/attributiontuteur" component={AttributionTuteur} />
       <Route path="/inscriptionapprenant" component={InscriptionApprenant} />
