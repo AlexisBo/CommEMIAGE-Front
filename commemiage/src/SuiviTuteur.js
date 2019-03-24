@@ -4,6 +4,39 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 class SuiviTuteur extends Component {
     
+    constructor(props) {
+        super(props);
+        this.state = {
+            apprenantGet : []
+        };
+    }
+    
+    componentDidMount() {
+        console.log('componentDidMount - Suivi Tuteur');
+        let currentComponent = this;
+        
+        fetch('http://localhost:3010/apprenants/')
+        .then((resp) => resp.json())
+        .then(function(data) {
+            console.log("data get: "+ data);
+            var list = [];
+            data.forEach(function(apprenant) {
+                console.log(apprenant);
+                list.push({label:apprenant.nom,value:apprenant.nom})
+            });
+            
+            currentComponent.setState({moduleGet : list});
+        })
+    }
+    
+    handleChange = (apprenant) => {
+        var list = [];
+        apprenant.forEach(function(apprenant) {
+            list.push({nom:apprenant.value})
+          });
+        this.setState({ apprenant:list });
+    }
+    
     render(){
         return (
             /*<div className="choix-etudiant col-md-6">
@@ -14,11 +47,8 @@ class SuiviTuteur extends Component {
                     <div className="panel-body">
                         <div className="row">
                             <div className="col-md-6">
-                                <select className="form-control">
-                                    <option value="Apprenant1">Apprenant 1</option>
-                                    <option value="Apprenant2">Apprenant 2</option>
-                                    <option value="Apprenant3">Apprenant 3</option>
-                                </select>
+                                <label htmlFor="apprenant">Apprenants :</label>
+                                <Select id="apprenant" name="apprenant" options={ this.state.apprenantGet } value={apprenant} onChange={this.handleChange}/>
                             </div>  
                         </div>
                     </div>
