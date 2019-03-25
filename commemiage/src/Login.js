@@ -11,10 +11,6 @@ class Login extends Component {
             password : ''
         }
     }
-
-    componentDidMount() {
-        console.log('componentDidMount : '+ this.props.token);
-    }
     
     handleSubmit(event) {
         event.preventDefault();
@@ -25,21 +21,15 @@ class Login extends Component {
             password : this.state.password
         }));
 
-        fetch('http://localhost:3010/utilisateurs/login',{
-            method: 'POST',
-            body: JSON.stringify({
-                email : this.state.email,
-                password : this.state.password
-        }),
-        headers: {"Content-Type": "application/json"}
-        })
-        .then(function(response){
-            console.log(response => response.json());
-            return response => response.json()
-        }).then(function(body){
-            console.log(body);            
+        fetch('http://localhost:3010/utilisateurs/login/'+ this.state.email + "/" + this.state.password)
+        .then((resp) => resp.json())
+        .then(function(data) {
+            console.log("login rep - data" + JSON.stringify(data));
+            localStorage.setItem('user_role', data.role); 
+            localStorage.setItem('user_email', data.email); 
+            localStorage.setItem('user_token', data.token);           
         });
-    }
+     }
 
     render() {
 
