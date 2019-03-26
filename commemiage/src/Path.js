@@ -7,6 +7,7 @@ import CreationFiliere from "./CreationFiliere";
 import InscriptionApprenant from "./InscriptionApprenant";
 import AttributionTuteur from "./AttributionTuteur";
 import NewTuteur from "./NewTuteur";
+import SuiviTuteur from "./SuiviTuteur";
 
 const Path = () => (
   <Router>
@@ -36,6 +37,9 @@ const Path = () => (
         <li className="list-inline-item">
           <u style={{color: "blue"}}><Link to="/attributiontuteur">Attribution tuteur</Link></u>
         </li>
+        <li className="list-inline-item">
+          <u style={{color: "blue"}}><Link to="/suivituteur">Suivi tuteur</Link></u>
+        </li>
       </ul>
       <hr />
 
@@ -47,6 +51,7 @@ const Path = () => (
       <Route path="/inscriptionapprenant" component={InscriptionApprenant} />
       <Route path="/choixmodulesemestre" component={ChoixModuleSemestre} />
       <Route path="/newtuteur" component={NewTuteur} />
+      <Route path="/suivituteur" component={SuiviTuteur} />
     </div>
   </Router>
 );
