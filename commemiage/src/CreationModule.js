@@ -8,9 +8,23 @@ class CreationModule extends Component {
         this.state = {
             nom: '',
             coefficient: '',
-            seuil: ''
+            seuil: '',
+            semestre : [],
           }
-      }
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount - Creation Module');
+        let currentComponent = this;
+
+        fetch('http://localhost:3010/semestres/')
+        .then((resp) => resp.json())
+        .then(function(semestre) {
+            console.log("semestre get: "+ semestre);
+            
+            currentComponent.setState({semestre : semestre});
+        })
+    }
     
     handleSubmit(event) {
         event.preventDefault();
@@ -20,7 +34,8 @@ class CreationModule extends Component {
         console.log('check data json',JSON.stringify({
             nom: this.state.nom,
             coefficient: this.state.coefficient,
-            seuil: this.state.seuil
+            seuil: this.state.seuil,
+            semestre : this.state.semestre
           }));
 
           fetch('http://localhost:3010/modules/add',{
@@ -28,7 +43,8 @@ class CreationModule extends Component {
             body: JSON.stringify({
                 nom: this.state.nom,
                 coefficient: this.state.coefficient,
-                seuil: this.state.seuil
+                seuil: this.state.seuil,
+                semestre : this.state.semestre
             }),
             headers: {"Content-Type": "application/json"}
           })
@@ -37,7 +53,9 @@ class CreationModule extends Component {
             return response => response.json()
           }).then(function(body){
             console.log(body);
-          });
+          }); 
+
+          window.location.reload();
     }
 
     render() {

@@ -66,6 +66,8 @@ class CreationFiliere extends Component {
           }).then(function(body){
             console.log(body);
           });
+           
+          window.location.reload();
     } 
 
     handleChange = (module) => {

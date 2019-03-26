@@ -97,7 +97,8 @@ class InscriptionApprenant extends Component {
                     console.log(body);
                 });
             });
-
+ 
+            window.location.reload();
         }
     }
 
