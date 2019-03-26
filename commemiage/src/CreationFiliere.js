@@ -20,7 +20,6 @@ class CreationFiliere extends Component {
     componentDidUpdate(prevProps, prevState) {
             console.log('componentDidUpdate - prevProps : ' + prevProps);
             console.log('componentDidUpdate - prevState : '+ prevState);
-
     }
 
     componentDidMount() {

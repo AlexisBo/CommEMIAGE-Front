@@ -41,7 +41,7 @@ const Path = () => (
 
       <Route exact path="/" component={Home} />
       <Route path="/creationmodule" component={CreationModule} />
-      <Route path="/login" component={Login} />
+      <Route path="/login" component={Login}  />
       <Route path="/creationfiliere" component={CreationFiliere} />
       <Route path="/attributiontuteur" component={AttributionTuteur} />
       <Route path="/inscriptionapprenant" component={InscriptionApprenant} />

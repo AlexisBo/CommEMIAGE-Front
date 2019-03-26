@@ -9,7 +9,6 @@ class ChoixModuleSemestre extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.state = {
-            apprenantId:'5c94d2732fc9303d60242bd0',
             apprenant: {
                 nom: '',
                 prenom : '',
@@ -41,7 +40,7 @@ class ChoixModuleSemestre extends Component {
         console.log('componentDidMount - Choix Module Semestre');
         let currentComponent = this;
         
-        fetch('http://localhost:3010/apprenants/get/'+this.state.apprenantId)
+        fetch('http://localhost:3010/apprenants/getEmail/'+ localStorage.getItem('user_email'))
         .then((resp) => resp.json())
         .then(function(apprenant) {
             console.log("apprenant get: "+ JSON.stringify(apprenant));         
