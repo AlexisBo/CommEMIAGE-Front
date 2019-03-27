@@ -13,26 +13,16 @@ class AttributionTuteur extends Component {
                 nom : '',
                 coefficient: '',
                 seuil: '',
-                filiere : {
-                    nom : ''
-                },
-                tuteur : {
-                    tuteurId : '',
-                    nom : '',
-                    prenom : ''
-                },
                 semestre: [{
                     nom : '',
                     dateDebut : '',
-                    dateFin : ''
+                    dateFin : '',    
+                    tuteur : {
+                        nom : '',
+                        prenom : ''
+                    },
                 }]
           }],
-          semestreGet: [{
-              nom : '',
-              dateDebut : '',
-              dateFin : ''
-          }],
-          filiereGet:[],
           tuteurGet:[]
         }
     }
@@ -53,30 +43,6 @@ class AttributionTuteur extends Component {
             currentComponent.setState({module : list});
         })
 
-        fetch('http://localhost:3010/semestres/')
-        .then((resp) => resp.json())
-        .then(function(semestre) {      
-            console.log("semestre get: "+ semestre);
-            var list = [];
-            semestre.forEach(function(s) {
-                list.push(s);
-            });      
-            currentComponent.setState({semestreGet : list});
-        })
-
-        fetch('http://localhost:3010/filieres/')
-        .then((resp) => resp.json())
-        .then(function(filiere) {
-            console.log("filiere get: "+ filiere);
-            var list = [];
-            filiere.forEach(function(filiere) {
-                console.log(filiere);
-                list.push({label:filiere.nom,value:filiere.nom})
-            });
-            
-            currentComponent.setState({filiereGet : list});
-        })
-
         fetch('http://localhost:3010/tuteurs/')
         .then((resp) => resp.json())
         .then(function(tuteur) {
@@ -84,7 +50,7 @@ class AttributionTuteur extends Component {
             var list = [];
             tuteur.forEach(function(tuteur) {
                 console.log(tuteur);
-                list.push({label:tuteur.nom,value:{tuteurId:tuteur._id, nom:tuteur.nom, prenom:tuteur.prenom}})
+                list.push({label:tuteur.nom,value:{nom:tuteur.nom, prenom:tuteur.prenom}})
             });
             
             currentComponent.setState({tuteurGet : list});
@@ -113,41 +79,34 @@ class AttributionTuteur extends Component {
           }).then(function(body){
             console.log(body);
           });
-    } 
-
-    handleFiliereChange = (filiere, index) => {
-        var module = this.state.module;
-        module[index].filiere = filiere;
-        this.setState({ module: module});
+          
+          window.location.reload();
     }
 
-    handleTuteurChange = (tuteur, index) => {
+    handleChange = (tuteur, index, indexSem) => {
         var module = this.state.module;
-        module[index].tuteur = tuteur;
+        module[index].semestre[indexSem].tuteur = tuteur.value;
         this.setState({ module: module});
     }
 
     render() {
 
         var modules = this.state.module.map( (module,index) => {
-            //const { tuteur } = this.state.module[index].tuteur;
-            return (
-                <div>
-                    <label htmlFor={module.nom}>{module.nom}</label>
-                    <input type="hidden" id={module.nom} name={module.nom} value={module.nom}/>
-                    
-                    <Select name="tuteur" options={ this.state.tuteurGet } /*value={tuteur}*/ onChange={(ev)=>this.handleTuteurChange(ev, index)} />  
-                </div>
-            )
-        });
-
-        var semestres = this.state.semestreGet.map( (semestre,index) => {
             return (
                 <div className="panel-body">
                     <div className="row">
                         <div className="col-md-6">
-                            <h5 className="title">{semestre.nom}</h5>
-                            {modules}
+                            <h5 className="title">{index + 1} Module : {module.nom}</h5>
+                            {module.semestre.map( (semestre,indexSem) => {
+                                return (
+                                    <div>
+                                        <label htmlFor={semestre.nom}>{indexSem + 1} Semestre : {semestre.nom}</label>
+                                        <input type="hidden" id={semestre.nom} name={semestre.nom} value={semestre.nom}/>
+                                        
+                                        <Select name="tuteur" options={ this.state.tuteurGet } value={semestre.tuteur} onChange={(ev)=>this.handleChange(ev, index, indexSem)} /> 
+                                    </div>
+                                )
+                            })}
                         </div>  
                     </div>
                 </div>
@@ -161,9 +120,9 @@ class AttributionTuteur extends Component {
                         <h4 className="title">Choix des tuteurs par semestres</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
-                        { semestres }
+                        { modules }
                         <div className="panel-footer">
-                            <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Choix modules </button>
+                            <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Choix tuteurs </button>
                         </div>
                     </form>
                 </div>
