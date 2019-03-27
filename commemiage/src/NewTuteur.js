@@ -85,7 +85,8 @@ class NewTuteur extends Component {
                     console.log(body);
                 });
             });
-
+ 
+            window.location.reload();
         }
     }
 

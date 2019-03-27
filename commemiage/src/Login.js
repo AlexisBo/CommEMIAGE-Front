@@ -27,7 +27,8 @@ class Login extends Component {
             console.log("login rep - data" + JSON.stringify(data));
             localStorage.setItem('user_role', data.role); 
             localStorage.setItem('user_email', data.email); 
-            localStorage.setItem('user_token', data.token);           
+            localStorage.setItem('user_token', data.token); 
+            window.location.reload();          
         });
      }
 

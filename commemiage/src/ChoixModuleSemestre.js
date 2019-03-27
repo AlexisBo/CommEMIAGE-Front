@@ -91,7 +91,9 @@ class ChoixModuleSemestre extends Component {
             return response => response.json()
           }).then(function(body){
             console.log(body);
-          });
+          }); 
+          
+          window.location.reload();
     } 
 
     handleChange = (module, index) => {
