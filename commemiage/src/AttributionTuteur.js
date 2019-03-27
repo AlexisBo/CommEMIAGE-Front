@@ -23,7 +23,18 @@ class AttributionTuteur extends Component {
                     },
                 }]
           }],
-          tuteurGet:[]
+            tuteur : [{
+            _id : '',
+            nom: '',
+            prenom : '',
+            adresse : '',
+            email : '',
+            module : [{
+                moduleId : '',
+                nom : ''
+            }]
+            }],
+            tuteurGet:[]
         }
     }
 
@@ -47,6 +58,9 @@ class AttributionTuteur extends Component {
         .then((resp) => resp.json())
         .then(function(tuteur) {
             console.log("tuteur get: "+ tuteur);
+
+            currentComponent.setState({tuteur : tuteur});
+
             var list = [];
             tuteur.forEach(function(tuteur) {
                 console.log(tuteur);
@@ -62,8 +76,11 @@ class AttributionTuteur extends Component {
 
         console.log('handleSubmit');
         console.log('check data',this.state);
-        console.log('check data json',JSON.stringify({
+        console.log('check module json',JSON.stringify({
             module: this.state.module
+        }));
+        console.log('check tuteur json',JSON.stringify({
+            tuteur: this.state.tuteur
         }));
 
           fetch('http://localhost:3010/modules/update',{
@@ -79,14 +96,56 @@ class AttributionTuteur extends Component {
           }).then(function(body){
             console.log(body);
           });
+
+          fetch('http://localhost:3010/tuteurs/update',{
+            method: 'PUT',
+            body: JSON.stringify({
+                tuteur: this.state.tuteur
+            }),
+            headers: {"Content-Type": "application/json"}
+          })
+          .then(function(response){
+            console.log(response => response.json());
+            return response => response.json()
+          }).then(function(body){
+            console.log(body);
+          });
           
-          window.location.reload();
+          //window.location.reload();
     }
 
     handleChange = (tuteur, index, indexSem) => {
-        var module = this.state.module;
+        let module = this.state.module;
+        let tuteurs = this.state.tuteur;
+
+        var i, j;
+        for(i = 0; i < tuteurs.length; i++) {
+            if(module[index].semestre[indexSem].tuteur === {nom : tuteurs[i].nom, prenom : tuteurs[i].prenom}){                
+                let ind = tuteurs[i].module.indexOf({moduleId : module[index]._id, nom : module[index].nom});
+                if (ind !== -1) tuteurs[i].module.splice(ind, 1);
+                break;
+            }
+        }
+
         module[index].semestre[indexSem].tuteur = tuteur.value;
         this.setState({ module: module});
+
+        for(i = 0; i < tuteurs.length; i++) {
+            if(tuteur.label === tuteurs[i].nom) {
+                let exist = false;
+                for(j = 0; j < tuteurs[i].module.length; j++) {
+                    if(module[index]._id === tuteurs[i].module[j].moduleId) {
+                        exist = true;
+                        break;
+                    }
+                }
+                if(!exist) {
+                    tuteurs[i].module.push({moduleId : module[index]._id, nom : module[index].nom});
+                }
+            }
+        }
+
+        this.setState({tuteur: tuteurs});
     }
 
     render() {
