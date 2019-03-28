@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 class NewTuteur extends Component {
 
@@ -104,12 +104,12 @@ class NewTuteur extends Component {
 
         return (
             <div className="inscription-apprenant col-md-6">
-                <div className="panel panel-default" style={{ border: "1px solid grey", padding: 10 + 'px'}}>
-                    <div className="panel-header">
+                <div className="card">
+                    <div className="card-header">
                         <h4 className="title">Création tuteur</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
-                        <div className="panel-body">
+                        <div className="card-body">
 
                             <label htmlFor="nom">Nom :</label>
                             <input type="text" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} className="form-control" id="nom" name="nom"/>
@@ -128,11 +128,12 @@ class NewTuteur extends Component {
 
                             <label htmlFor="confPassword">Confirmation du mot de passe :</label>
                             <input type="password" value={this.state.confPassword} onChange={(ev)=>this.setState({confPassword:ev.target.value})} className="form-control" id="confPassword" name="confPassword"/>
-
-                            <label htmlFor="module">Modules :</label>
-                            <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleChange} isMulti />
+                            
+                            <label className="col-form-label" htmlFor="module">Modules :</label>
+                            <Select className="form-control" id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleChange} isMulti />
+                            
                         </div>
-                        <div className="panel-footer">
+                        <div className="card-footer">
                             <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Créer </button>
                         </div>
                     </form>
