@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import './ressources/css/bootstrap_limitless.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 class CreationFiliere extends Component {
 
@@ -83,23 +84,23 @@ class CreationFiliere extends Component {
 
         return (
             <div className="creation-filiere col-md-6">
-                <div className="panel panel-default" style={{ border: "1px solid grey", padding: 10 + 'px'}}>
-                    <div className="panel-header">
-                        <h4 className="title">Création d'une filière</h4>
+                <div className="card">
+                    <div className="card-header">
+                        <h4 className="card-title">Création d'une filière</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
-                        <div className="panel-body">
-
-                            <label htmlFor="nom">Saisir le nom de la filière</label>
-                            <input type="text" className="form-control" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} id="nom" name="nom"/>
-
-                            <label htmlFor="nom">Saisir la description de la filière</label>
-                            <input type="text" className="form-control" value={this.state.description} onChange={(ev)=>this.setState({description:ev.target.value})} id="description" name="description"/>
+                        <div className="card-body form-group">
+                            
+                            <label>Saisir le nom de la filière</label>
+                            <input style={{marginBottom: 15 + 'px', marginTop: 0 + 'px'}} type="text" className="form-control" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} id="nom" name="nom"/>
+                            
+                            <label>Saisir la description de la filière</label>
+                            <input style={{marginBottom: 15 + 'px', marginTop: 0 + 'px'}} type="text" className="form-control" value={this.state.description} onChange={(ev)=>this.setState({description:ev.target.value})} id="description" name="description"/>
                             
                             <label htmlFor="module">Modules :</label>
                             <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleChange} isMulti />                  
                         </div>
-                        <div className="panel-footer">
+                        <div className="card-footer">
                             <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Création filière </button>
                         </div>
                     </form>

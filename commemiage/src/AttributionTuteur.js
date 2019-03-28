@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 class AttributionTuteur extends Component {
 
@@ -152,7 +152,7 @@ class AttributionTuteur extends Component {
 
         var modules = this.state.module.map( (module,index) => {
             return (
-                <div className="panel-body">
+                <div className="card-body">
                     <div className="row">
                         <div className="col-md-6">
                             <h5 className="title">{index + 1} Module : {module.nom}</h5>
@@ -174,13 +174,13 @@ class AttributionTuteur extends Component {
 
         return (
             <div className="attribution-tuteur col-md-6">
-                <div className="panel panel-default" style={{ border: "1px solid grey", padding: 10 + 'px'}}>
-                    <div className="panel-header">
+                <div className="card">
+                    <div className="card-header">
                         <h4 className="title">Choix des tuteurs par semestres</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
                         { modules }
-                        <div className="panel-footer">
+                        <div className="card-footer">
                             <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Choix tuteurs </button>
                         </div>
                     </form>

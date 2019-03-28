@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ressources/App.css';
+import './ressources/css/bootstrap_limitless.css';
 import Administrateur from './PathAdministrateur';
 import Tuteur from './PathTuteur';
 import Apprenant from './PathApprenant';

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 class InscriptionApprenant extends Component {
 
@@ -111,12 +111,12 @@ class InscriptionApprenant extends Component {
 
         return (
             <div className="inscription-apprenant col-md-6">
-                <div className="panel panel-default" style={{ border: "1px solid grey", padding: 10 + 'px'}}>
-                    <div className="panel-header">
+                <div className="card">
+                    <div className="card-header">
                         <h4 className="title">Inscription de l'apprenant</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
-                        <div className="panel-body">
+                        <div className="card-body">
 
                             <label htmlFor="nom">Nom :</label>
                             <input type="text" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} className="form-control" id="nom" name="nom"/>
@@ -139,7 +139,7 @@ class InscriptionApprenant extends Component {
                             <label htmlFor="filiere">Filière :</label>
                             <Select id="filiere" options={ this.state.filiereGet } value={filiere} onChange={this.handleChange} name="filiere" />
                         </div>
-                        <div className="panel-footer">
+                        <div className="card-footer">
                             <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>S'inscrire </button>
                         </div>
                     </form>
