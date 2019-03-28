@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 class ChoixModuleSemestre extends Component {
 
@@ -118,7 +118,7 @@ class ChoixModuleSemestre extends Component {
 
         var semestres = this.state.apprenant.semestre.map( (semestre,index) => {
             return (
-                <div className="panel-body">
+                <div className="card-body">
                     <div className="row">
                             <div className="col-md-6">
                                 <label htmlFor="nom">{semestre.nom}</label>
@@ -133,13 +133,13 @@ class ChoixModuleSemestre extends Component {
 
         return (
             <div className="choix-module col-md-6">
-                <div className="panel panel-default" style={{ border: "1px solid grey", padding: 10 + 'px'}}>
-                    <div className="panel-header">
+                <div className="card">
+                    <div className="card-header">
                         <h4 className="title">Choix des modules par semestres</h4>
                     </div>
                     <form onSubmit={this.handleSubmit}>
                         { semestres }
-                        <div className="panel-footer">
+                        <div className="card-footer">
                             <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Choix modules </button>
                         </div>
                     </form>

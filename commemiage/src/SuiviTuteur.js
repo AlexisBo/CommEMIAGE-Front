@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 class SuiviTuteur extends Component {
     
@@ -139,11 +139,11 @@ class SuiviTuteur extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="choix-etudiant col-md-6">
-                    <div className="panel panel-default" style={{ border: "1px solid grey", padding: 10 + 'px'}}>
-                        <div className="panel-header">
+                    <div className="card">
+                        <div className="card-header">
                             <h4 className="title">Selection des criteres</h4>
                         </div>
-                        <div className="panel-body">
+                        <div className="card-body">
                             <div className="row">
                                 <div className="col-md-6">
                                     <label htmlFor="tuteur">Tuteur :</label>
@@ -163,11 +163,11 @@ class SuiviTuteur extends Component {
                 <br />
 
                 <div className="suivi-tuteur col-md-6">
-                    <div className="panel panel-default" style={{ border: "1px solid grey", padding: 10 + 'px'}}>
-                        <div className="panel-header">
+                    <div className="card">
+                        <div className="card-header">
                             <h4 className="title">Fiche de suivi</h4>
                         </div>
-                        <div className="panel-body">
+                        <div className="card-body">
                             <div className="row">
                                 <div className="col-md-6">
                                     <h5>Apprenant : </h5> {this.state.suivi.apprenant.prenom + " " +this.state.suivi.apprenant.nom}
@@ -204,7 +204,7 @@ class SuiviTuteur extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="panel-footer">
+                <div className="card-footer">
                     <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Enregistrer</button>
                 </div>
             </form>

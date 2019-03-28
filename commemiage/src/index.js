@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './ressources/index.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './ressources/css/bootstrap.min.css';
+import './ressources/css/bootstrap_limitless.min.css';
+import './ressources/css/colors.min.css';
+//import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
