@@ -26,7 +26,21 @@ class SuiviTuteur extends Component {
                     nom : ''
                 }
             },
-            tuteurGet : [],
+            tuteur : {
+                nom : '',
+                prenom : '',
+                adresse : '',
+                email : '',
+                module : [{
+                    moduleId : '',
+                    nom : ''
+                }],
+                apprenant : [{
+                    apprenantId : '',
+                    nom : '',
+                    prenom : ''
+                }]
+            },
             apprenantGet : [],
             moduleGet : []
         };
@@ -36,17 +50,27 @@ class SuiviTuteur extends Component {
         console.log('componentDidMount - Suivi Tuteur');
         let currentComponent = this;
         
-        fetch('http://localhost:3010/tuteurs/')
+        fetch('http://localhost:3010/tuteurs/getEmail/'+ localStorage.getItem('user_email'))
         .then((resp) => resp.json())
-        .then(function(data) {
-            console.log("data get: "+ data);
-            var list = [];
-            data.forEach(function(tuteur) {
-                console.log(tuteur);
-                list.push({label:tuteur.prenom + " " + tuteur.nom,value:{ tuteurId : tuteur._id, nom : tuteur.nom, prenom : tuteur.prenom }})
+        .then(function(tuteur) {
+            console.log("tuteur get: "+ JSON.stringify(tuteur));         
+
+            currentComponent.setState({tuteur : tuteur});
+           
+            let list = []; 
+            tuteur.module.forEach(function(module) {
+                console.log(module);
+                fetch('http://localhost:3010/modules/get/'+ module.moduleId)
+                .then((resp) => resp.json())
+                .then(function(module) {
+                    console.log("module get: "+ JSON.stringify(module));         
+
+                    module.semestre.forEach(function(semestre) {
+                        list.push({label:module.nom + " - " + semestre.nom,value:{ moduleId : module._id, nom : module.nom }});
+                    });
+                    currentComponent.setState({moduleGet : list});
+                })
             });
-            
-            currentComponent.setState({tuteurGet : list});
         })
         
         fetch('http://localhost:3010/apprenants/')
@@ -60,22 +84,7 @@ class SuiviTuteur extends Component {
             });
             
             currentComponent.setState({apprenantGet : list});
-        })
-        
-        fetch('http://localhost:3010/modules/')
-        .then((resp) => resp.json())
-        .then(function(data) {
-            console.log("data get: "+ data);
-            var list = [];
-            data.forEach(function(module) {
-                console.log(module);
-                module.semestre.forEach(function(semestre) {
-                    list.push({label:module.nom + " - " + semestre.nom,value:{ moduleId : module._id, nom : module.nom }})
-                });
-            });
-            
-            currentComponent.setState({moduleGet : list});
-        })
+        })        
     }
 
     handleSubmit(event) {
@@ -115,10 +124,6 @@ class SuiviTuteur extends Component {
           });
     }
     
-    handleTuteurChange = (tuteur) => {
-        this.setState({ suivi : {tuteur : tuteur.value} });
-    }
-    
     handleApprenantChange = (apprenant) => {
         this.setState({ suivi : {apprenant : apprenant.value} });
     }
@@ -136,6 +141,9 @@ class SuiviTuteur extends Component {
     }
     
     render(){
+        const { module } = this.state.suivi.module.nom;
+        const { apprenant } = this.state.suivi.apprenant.prenom + " " +this.state.suivi.apprenant.nom;
+
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className="choix-etudiant col-md-6">
@@ -146,15 +154,15 @@ class SuiviTuteur extends Component {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-md-6">
-                                    <label htmlFor="tuteur">Tuteur :</label>
-                                    <Select id="tuteur" name="tuteur" options={ this.state.tuteurGet } value={this.state.suivi.tuteur.prenom + " " +this.state.suivi.tuteur.nom} onChange={this.handleTuteurChange}/>
+                                    <label htmlFor="tuteur">Tuteur : {this.state.tuteur.prenom + " " + this.state.tuteur.nom}</label>
+                                    <br />
                                     
                                     <label htmlFor="apprenant">Apprenant :</label>
-                                    <Select id="apprenant" name="apprenant" options={ this.state.apprenantGet } value={this.state.suivi.apprenant.prenom + " " +this.state.suivi.apprenant.nom} onChange={this.handleApprenantChange}/>
+                                    <Select id="apprenant" name="apprenant" options={ this.state.apprenantGet } value={apprenant} onChange={this.handleApprenantChange}/>
                                     
                                     <label htmlFor="module">Module :</label>
-                                    <Select id="module" name="module" options={ this.state.moduleGet } value={this.state.suivi.module.nom} onChange={this.handleModuletChange}/>
-                                </div>  
+                                    <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleModuletChange}/>
+                                </div> 
                             </div>
                         </div>
                     </div>
@@ -168,17 +176,6 @@ class SuiviTuteur extends Component {
                             <h4 className="title">Fiche de suivi</h4>
                         </div>
                         <div className="card-body">
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <h5>Apprenant : </h5> {this.state.suivi.apprenant.prenom + " " +this.state.suivi.apprenant.nom}
-                                    <h5>Module : </h5> {this.state.suivi.module.nom}
-                                </div>
-                                <div className="col-md-6">
-                                    <h5>Tuteur : </h5> {this.state.suivi.tuteur.prenom + " " +this.state.suivi.tuteur.nom}
-                                </div>   
-                            </div>
-
-                            <hr></hr>
 
                             <div className="row">
                                 <h4 style={{marginLeft: 286 + 'px'}}>Synthèse tutorat</h4>

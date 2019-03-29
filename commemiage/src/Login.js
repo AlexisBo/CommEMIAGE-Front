@@ -1,33 +1,41 @@
 import React, { Component } from 'react';
 //import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import InscriptionApprenant from "./InscriptionApprenant";
+
 class Login extends Component {
-   constructor(props) {
-       super(props);
-       this.handleSubmit = this.handleSubmit.bind(this);
-       this.state = {
-           email: '',
-           password : ''
-       }
-   }
-   handleSubmit(event) {
-       event.preventDefault();
-       console.log('check data',this.state);
-       console.log('check data json',JSON.stringify({
-           email : this.state.email,
-           password : this.state.password
-       }));
-       fetch('http://localhost:3010/utilisateurs/login/'+ this.state.email + "/" + this.state.password)
-       .then((resp) => resp.json())
-       .then(function(data) {
-           console.log("login rep - data" + JSON.stringify(data));
-           localStorage.setItem('user_role', data.role);
-           localStorage.setItem('user_email', data.email);
-           localStorage.setItem('user_token', data.token);
-           window.location.reload();
-       });
+    constructor(props) {
+        super(props);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            email: '',
+            password : ''
+        }
     }
+    
+    handleSubmit(event) {
+        event.preventDefault();
+        
+        console.log('check data',this.state);
+        console.log('check data json',JSON.stringify({
+            email : this.state.email,
+            password : this.state.password
+        }));
+
+        fetch('http://localhost:3010/utilisateurs/login/'+ this.state.email + "/" + this.state.password)
+        .then((resp) => resp.json())
+        .then(function(data) {
+            console.log("login rep - data" + JSON.stringify(data));
+            localStorage.setItem('user_role', data.role); 
+            localStorage.setItem('user_email', data.email); 
+            localStorage.setItem('user_token', data.token); 
+            window.location.reload();          
+        });
+    }
+
    render() {
        return (
+        <Router>
            <div className="login col-md-6">
                <div className="card">
                    <div className="card-header">
@@ -44,8 +52,11 @@ class Login extends Component {
                            <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Login </button>
                        </div>
                    </form>
-               </div>
-           </div>
+                </div>
+                <Link to="/inscriptionapprenant">S'inscrire</Link>
+                <Route path="/inscriptionapprenant" component={InscriptionApprenant} />
+            </div>
+        </Router>
        )
    }
 }
