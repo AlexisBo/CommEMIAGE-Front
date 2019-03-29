@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 //import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import InscriptionApprenant from "./InscriptionApprenant";
 
 class Login extends Component {
-
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,32 +31,33 @@ class Login extends Component {
             localStorage.setItem('user_token', data.token); 
             window.location.reload();          
         });
-     }
-
-    render() {
-
-        return (
-            <div className="login col-md-6">
-                <div className="card">
-                    <div className="card-header">
-                        <h4 className="title">Connexion</h4>
-                    </div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="card-body">
-                            <label htmlFor="mail">Adresse mail :</label>
-                            <input type="text" value={this.state.email} onChange={(ev)=>this.setState({email:ev.target.value})} className="form-control" id="email" name="email"/>
-                            
-                            <label htmlFor="password">Mot de passe :</label>
-                            <input type="password" value={this.state.password} onChange={(ev)=>this.setState({password:ev.target.value})} className="form-control" id="password" name="password"/>
-                        </div>
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Login </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        )
     }
-}
 
+   render() {
+       return (
+        <Router>
+           <div className="login col-md-6">
+               <div className="card">
+                   <div className="card-header">
+                       <h4 className="title">Connexion</h4>
+                   </div>
+                   <form onSubmit={this.handleSubmit}>
+                       <div className="card-body">
+                           <label htmlFor="mail">Adresse mail :</label>
+                           <input type="text" value={this.state.email} onChange={(ev)=>this.setState({email:ev.target.value})} className="form-control" id="email" name="email"/>
+                           <label htmlFor="password">Mot de passe :</label>
+                           <input type="password" value={this.state.password} onChange={(ev)=>this.setState({password:ev.target.value})} className="form-control" id="password" name="password"/>
+                       </div>
+                       <div className="card-footer">
+                           <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Login </button>
+                       </div>
+                   </form>
+                </div>
+                <Link to="/inscriptionapprenant">S'inscrire</Link>
+                <Route path="/inscriptionapprenant" component={InscriptionApprenant} />
+            </div>
+        </Router>
+       )
+   }
+}
 export default Login
