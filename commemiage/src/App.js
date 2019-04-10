@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import './ressources/App.css';
+import './ressources/css/bootstrap.css';
 import './ressources/css/bootstrap_limitless.css';
+import './ressources/css/components.css';
+import './ressources/css/colors.css';
+import './ressources/css/layout.css';
+import './ressources/css/icons/icomoon/styles.css';
+import './ressources/css/custom.css';
+import './ressources/App.css';
 import Administrateur from './PathAdministrateur';
 import Tuteur from './PathTuteur';
 import Apprenant from './PathApprenant';
@@ -13,19 +19,19 @@ class App extends Component {
 
       if(localStorage.getItem('user_role') === "Administrateur") {
         return (
-          <div className="App">
+          <div className="App ashier">
             <Administrateur/>
           </div>
         );
       } else if(localStorage.getItem('user_role') === "Tuteur") {
         return (
-          <div className="App">
+          <div className="App ashier">
             <Tuteur/>
           </div>
         );
       } else if(localStorage.getItem('user_role') === "Apprenant") {
         return (
-          <div className="App">
+          <div className="App ashier">
             <Apprenant/>
           </div>
         );
@@ -33,7 +39,7 @@ class App extends Component {
 
     } else {
       return (
-        <div className="App">
+        <div className="App ashier">
           <Login/>
         </div>
       );
