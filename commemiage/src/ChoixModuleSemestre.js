@@ -10,6 +10,7 @@ class ChoixModuleSemestre extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.state = {
             apprenant: {
+                _id: '',
                 nom: '',
                 prenom : '',
                 adresse : '',
@@ -56,18 +57,26 @@ class ChoixModuleSemestre extends Component {
                 provisoire.push(mods);
             });
             console.log("provisoire: "+ JSON.stringify(provisoire));
-            //provisoire = [[{"label":"Module 1"}],[],[{"label":"Module 2"}],[],[{"label":"Module 3"}],[]];
             currentComponent.setState({moduleProvisoire : provisoire});
 
             fetch('http://localhost:3010/filieres/get/' + apprenant.filiere.filiereId)
             .then((resp) => resp.json())
             .then(function(filiere) {
-                var list = [];
-                filiere.module.forEach(function(module) {
-                    list.push({label:module.nom,value:module.nom})
-                });
-                console.log("set moduleGet: "+ JSON.stringify(currentComponent.state.moduleGet));
-                currentComponent.setState({moduleGet : list});
+                fetch('http://localhost:3010/modules/')
+                .then((resp) => resp.json())
+                .then(function(module) {
+                    console.log("modules get: "+ module);
+                    var list = [];
+                    module.forEach(function(module) {
+                        filiere.module.forEach(function(filModule) {
+                            if(filModule.nom === module.nom){
+                                list.push({label:module.nom,value:module._id});
+                                return;
+                            }
+                        });
+                    });
+                    currentComponent.setState({moduleGet : list});
+                })
             })
         })
     }
@@ -79,7 +88,7 @@ class ChoixModuleSemestre extends Component {
         console.log('check data',this.state);
         console.log('check data json',JSON.stringify(this.state.apprenant));
 
-          fetch('http://localhost:3010/apprenants/update/'+this.state.apprenantId,{
+          fetch('http://localhost:3010/apprenants/update/'+this.state.apprenant._id,{
             method: 'PUT',
             body: JSON.stringify({
                 apprenant: this.state.apprenant
@@ -93,7 +102,7 @@ class ChoixModuleSemestre extends Component {
             console.log(body);
           }); 
           
-          window.location.reload();
+          //window.location.reload();
     } 
 
     handleChange = (module, index) => {
