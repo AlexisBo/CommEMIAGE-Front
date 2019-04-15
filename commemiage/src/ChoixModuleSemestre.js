@@ -88,19 +88,19 @@ class ChoixModuleSemestre extends Component {
         console.log('check data',this.state);
         console.log('check data json',JSON.stringify(this.state.apprenant));
 
-          fetch('http://localhost:3010/apprenants/update/'+this.state.apprenant._id,{
-            method: 'PUT',
-            body: JSON.stringify({
-                apprenant: this.state.apprenant
-            }),
-            headers: {"Content-Type": "application/json"}
-          })
-          .then(function(response){
-            console.log(response => response.json());
-            return response => response.json()
-          }).then(function(body){
-            console.log(body);
-          }); 
+        fetch('http://localhost:3010/apprenants/update/'+this.state.apprenant._id,{
+        method: 'PUT',
+        body: JSON.stringify({
+            apprenant: this.state.apprenant
+        }),
+        headers: {"Content-Type": "application/json"}
+        })
+        .then(function(response){
+        console.log(response => response.json());
+        return response => response.json()
+        }).then(function(body){
+        console.log(body);
+        }); 
           
           //window.location.reload();
     } 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Select from 'react-select';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 class SuiviTuteur extends Component {
@@ -7,9 +6,32 @@ class SuiviTuteur extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            apprenant : {
+                _id : '',
+                nom :'',
+                prenom : '',
+                adresse : '',
+                email : '',
+                dateFormation : '',
+                filiere : '',
+                semestre : [{
+                    nom : '',
+                    dateDebut : '',
+                    dateFin : '',
+                    module : [{
+                          nom : '',
+                          evaluation : [{
+                                alias : '',
+                          }],
+                          suivi : [{
+                                alias : '',
+                          }]
+                    }]
+              }]
+            },
             suivi : {
                 alias : '',
-                questions: '',
+                questions : '',
                 remarques : '',
                 tuteur : {
                     tuteurId : '',
@@ -26,74 +48,44 @@ class SuiviTuteur extends Component {
                     nom : ''
                 }
             },
-            tuteur : {
+            apprenantSelected : {
+                apprenantId : '',
                 nom : '',
-                prenom : '',
-                adresse : '',
-                email : '',
-                module : [{
-                    moduleId : '',
-                    nom : ''
-                }],
-                apprenant : [{
-                    apprenantId : '',
-                    nom : '',
-                    prenom : ''
-                }]
+                prenom : ''
             },
-            apprenantGet : [],
-            moduleGet : []
+            moduleSelected : {
+                moduleId : '',
+                nom : ''
+            },
+            tuteurSelected : {
+                tuteurId : '',
+                nom : '',
+                prenom : ''
+            },
+            semestreNom : ''
         };
     }
     
     componentDidMount() {
         console.log('componentDidMount - Suivi Tuteur');
         let currentComponent = this;
-        
-        fetch('http://localhost:3010/tuteurs/getEmail/'+ localStorage.getItem('user_email'))
-        .then((resp) => resp.json())
-        .then(function(tuteur) {
-            console.log("tuteur get: "+ JSON.stringify(tuteur));         
 
-            currentComponent.setState({tuteur : tuteur});
-           
-            let list = []; 
-            tuteur.module.forEach(function(module) {
-                console.log(module);
-                fetch('http://localhost:3010/modules/get/'+ module.moduleId)
-                .then((resp) => resp.json())
-                .then(function(module) {
-                    console.log("module get: "+ JSON.stringify(module));         
-
-                    module.semestre.forEach(function(semestre) {
-                        list.push({label:module.nom + " - " + semestre.nom,value:{ moduleId : module._id, nom : module.nom }});
-                    });
-                    currentComponent.setState({moduleGet : list});
-                })
+        fetch('http://localhost:3010/apprenant/get/' + this.state.apprenantSelected.apprenantId)
+            .then((resp) => resp.json())
+            .then(function(apprenant) {
+                currentComponent.setState({ apprenant : apprenant});
             });
-        })
-        
-        fetch('http://localhost:3010/apprenants/')
-        .then((resp) => resp.json())
-        .then(function(data) {
-            console.log("data get: "+ data);
-            var list = [];
-            data.forEach(function(apprenant) {
-                console.log(apprenant);
-                list.push({label:apprenant.prenom + " " + apprenant.nom,value:{ apprenantId : apprenant._id, nom : apprenant.nom, prenom : apprenant.prenom }})
-            });
-            
-            currentComponent.setState({apprenantGet : list});
-        })        
     }
 
     handleSubmit(event) {
         event.preventDefault();
+        let currentComponent = this;
 
         console.log('handleSubmit');
         console.log('check data',this.state);
 
-        this.setState({suivi : { alias : this.state.suivi.apprenant + " - " + this.state.suivi.module}})
+        this.setState({suivi : {tuteur : this.state.tuteurSelected, apprenant : this.state.apprenantSelected, module : this.state.moduleSelected}});
+        this.setState({suivi : { alias : this.state.suivi.apprenant.nom + this.state.suivi.apprenant.prenom + " - " + this.state.suivi.tuteur.nom + this.state.suivi.tuteur.prenom + " - " + this.state.suivi.module.nom}});
 
         console.log('check module json',JSON.stringify({
             alias : this.state.suivi.alias,
@@ -122,14 +114,33 @@ class SuiviTuteur extends Component {
           }).then(function(body){
             console.log(body);
           });
-    }
-    
-    handleApprenantChange = (apprenant) => {
-        this.setState({ suivi : {apprenant : apprenant.value} });
-    }
-    
-    handleModuleChange = (module) => {
-        this.setState({ suivi : {module : module.value} });
+
+        let apprenant = this.state.apprenant;
+        apprenant.semestre.forEach(function(semestre) {
+            if(semestre.nom === currentComponent.semestreNom){
+                semestre.module.forEach(function(module) {
+                    if(module.nom === currentComponent.moduleSelected.nom && !module.suivi.includes({alias : currentComponent.state.suivi.alias})){
+                        module.suivi.push(currentComponent.state.suivi.alias);
+                    }
+                });
+            }
+        });
+
+        fetch('http://localhost:3010/apprenants/update/'+ apprenant._id,{
+        method: 'PUT',
+        body: JSON.stringify({
+            apprenant: this.state.apprenant
+        }),
+        headers: {"Content-Type": "application/json"}
+        })
+        .then(function(response){
+        console.log(response => response.json());
+        return response => response.json()
+        }).then(function(body){
+        console.log(body);
+        });
+
+        window.location.reload();
     }
     
     handleQuestionsChange = (questions) => {
@@ -141,35 +152,9 @@ class SuiviTuteur extends Component {
     }
     
     render(){
-        const { module } = this.state.suivi.module.nom;
-        const { apprenant } = this.state.suivi.apprenant.prenom + " " +this.state.suivi.apprenant.nom;
 
         return (
             <form onSubmit={this.handleSubmit}>
-                <div className="choix-etudiant col-md-6">
-                    <div className="card">
-                        <div className="card-header">
-                            <h4 className="title">Selection des criteres</h4>
-                        </div>
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <label htmlFor="tuteur">Tuteur : {this.state.tuteur.prenom + " " + this.state.tuteur.nom}</label>
-                                    <br />
-                                    
-                                    <label htmlFor="apprenant">Apprenant :</label>
-                                    <Select id="apprenant" name="apprenant" options={ this.state.apprenantGet } value={apprenant} onChange={this.handleApprenantChange}/>
-                                    
-                                    <label htmlFor="module">Module :</label>
-                                    <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleModuletChange}/>
-                                </div> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <br />
-
                 <div className="suivi-tuteur col-md-6">
                     <div className="card">
                         <div className="card-header">

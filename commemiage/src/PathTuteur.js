@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import SuiviTuteur from "./SuiviTuteur";
+import SelectionSuivi from "./SelectionSuivi";
 
 function deconnexion () {
   localStorage.clear();
@@ -15,7 +15,7 @@ const Path = () => (
           <u style={{color: "blue"}}><Link to="/">Home</Link></u>
         </li>
         <li className="list-inline-item">
-          <u style={{color: "blue"}}><Link to="/suivituteur">Suivi tuteur</Link></u>
+          <u style={{color: "blue"}}><Link to="/selectionSuivi">Suivi tuteur</Link></u>
         </li>
         <li className="list-inline-item">
           <u style={{color: "blue"}}><Link to="" onClick={deconnexion}>Logout</Link></u>
@@ -24,7 +24,7 @@ const Path = () => (
       <hr />
 
       <Route exact path="/" component={Home} />
-      <Route path="/suivituteur" component={SuiviTuteur} />
+      <Route path="/selectionSuivi" component={SelectionSuivi} />
     </div>
   </Router>
 );
