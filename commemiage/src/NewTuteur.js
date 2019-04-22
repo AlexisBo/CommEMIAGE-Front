@@ -74,7 +74,7 @@ class NewTuteur extends Component {
                 body: JSON.stringify({
                     role: "Tuteur",
                     email : currentComponent.state.email,
-                    password : currentComponent.state.password
+                    password : "bienvenue"
                 }),
                 headers: {"Content-Type": "application/json"}
                 })
@@ -122,13 +122,7 @@ class NewTuteur extends Component {
 
                             <label htmlFor="mail">Adresse mail :</label>
                             <input type="text" value={this.state.email} onChange={(ev)=>this.setState({email:ev.target.value})} className="form-control" id="email" name="email"/>
-                            
-                            <label htmlFor="password">Mot de passe :</label>
-                            <input type="password" value={this.state.password} onChange={(ev)=>this.setState({password:ev.target.value})} className="form-control" id="password" name="password"/>
 
-                            <label htmlFor="confPassword">Confirmation du mot de passe :</label>
-                            <input type="password" value={this.state.confPassword} onChange={(ev)=>this.setState({confPassword:ev.target.value})} className="form-control" id="confPassword" name="confPassword"/>
-                            
                             <label className="col-form-label" htmlFor="module">Modules :</label>
                             <Select className="form-control" id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleChange} isMulti />
                             

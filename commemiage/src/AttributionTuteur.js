@@ -140,7 +140,7 @@ class AttributionTuteur extends Component {
                     }
                 }
                 if(!exist) {
-                    tuteurs[i].module.push({moduleId : module[index]._id, nom : module[index].nom});
+                    tuteurs[i].module.push({semestre : module[index].semestre[indexSem].nom, moduleId : module[index]._id, nom : module[index].nom});
                 }
             }
         }
