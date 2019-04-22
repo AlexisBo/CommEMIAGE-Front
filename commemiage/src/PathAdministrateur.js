@@ -4,6 +4,7 @@ import CreationModule from "./CreationModule";
 import CreationFiliere from "./CreationFiliere";
 import AttributionTuteur from "./AttributionTuteur";
 import NewTuteur from "./NewTuteur";
+import InscriptionApprenant from "./InscriptionApprenant";
 
 function deconnexion () {
  localStorage.clear();
@@ -27,6 +28,9 @@ const Path = () => (
           <u style={{color: "blue"}}><Link to="/newtuteur">Création Tuteur</Link></u>
         </li>
         <li className="list-inline-item">
+          <u style={{color: "blue"}}><Link to="/inscriptionApprenant">Inscrire un apprenant</Link></u>
+        </li>
+        <li className="list-inline-item">
           <u style={{color: "blue"}}><Link to="/attributiontuteur">Attribution tuteur</Link></u>
         </li>
         <li className="list-inline-item">
@@ -40,6 +44,7 @@ const Path = () => (
     <Route path="/creationfiliere" component={CreationFiliere} />
     <Route path="/attributiontuteur" component={AttributionTuteur} />
     <Route path="/newtuteur" component={NewTuteur} />
+    <Route path="/inscriptionApprenant" component={InscriptionApprenant} />
    </div>
  </Router>
 );

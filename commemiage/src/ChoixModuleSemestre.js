@@ -10,6 +10,7 @@ class ChoixModuleSemestre extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.state = {
             apprenant: {
+                _id: '',
                 nom: '',
                 prenom : '',
                 adresse : '',
@@ -31,6 +32,26 @@ class ChoixModuleSemestre extends Component {
                     }]
               }]
             },
+            module:[{
+                _id : '',
+                nom : '',
+                coefficient : '',
+                seuil : '',
+                semestre : [{
+                    nom : '',
+                    dateDebut : '',
+                    dateFin : '',
+                    tuteur : {
+                        nom : '',
+                        prenom : ''
+                    },
+                    apprenant : [{
+                        apprenantId : '',
+                        nom : '',
+                        prenom : ''
+                    }]
+                }]
+            }],
             moduleProvisoire:[],
             moduleGet: []
         }
@@ -56,62 +77,128 @@ class ChoixModuleSemestre extends Component {
                 provisoire.push(mods);
             });
             console.log("provisoire: "+ JSON.stringify(provisoire));
-            //provisoire = [[{"label":"Module 1"}],[],[{"label":"Module 2"}],[],[{"label":"Module 3"}],[]];
             currentComponent.setState({moduleProvisoire : provisoire});
 
             fetch('http://localhost:3010/filieres/get/' + apprenant.filiere.filiereId)
             .then((resp) => resp.json())
             .then(function(filiere) {
-                var list = [];
-                filiere.module.forEach(function(module) {
-                    list.push({label:module.nom,value:module.nom})
-                });
-                console.log("set moduleGet: "+ JSON.stringify(currentComponent.state.moduleGet));
-                currentComponent.setState({moduleGet : list});
+                fetch('http://localhost:3010/modules/')
+                .then((resp) => resp.json())
+                .then(function(module) {
+                    console.log("modules get: "+ module);
+                    let list = [];
+                    let modules = [];
+                    module.forEach(function(module) {
+                        filiere.module.forEach(function(filModule) {
+                            if(filModule.nom === module.nom){
+                                list.push({label:module.nom,value:module._id});
+                                return;
+                            }
+                        });
+
+                        modules.push(module)
+                    });
+                    currentComponent.setState({moduleGet : list});
+                    currentComponent.setState({module : modules});
+                })
             })
         })
     }
     
     handleSubmit(event) {
         event.preventDefault();
+        let currentComponent = this;
 
         console.log('handleSubmit');
         console.log('check data',this.state);
         console.log('check data json',JSON.stringify(this.state.apprenant));
 
-          fetch('http://localhost:3010/apprenants/update/'+this.state.apprenantId,{
+        fetch('http://localhost:3010/apprenants/update/'+this.state.apprenant._id,{
+        method: 'PUT',
+        body: JSON.stringify({
+            apprenant: this.state.apprenant
+        }),
+        headers: {"Content-Type": "application/json"}
+        })
+        .then(function(response){
+        console.log(response => response.json());
+        return response => response.json()
+        }).then(function(body){
+            console.log("looking" + JSON.stringify(currentComponent.state.module));
+            fetch('http://localhost:3010/modules/update',{
             method: 'PUT',
             body: JSON.stringify({
-                apprenant: this.state.apprenant
+                module: currentComponent.state.module
             }),
             headers: {"Content-Type": "application/json"}
-          })
-          .then(function(response){
+            })
+            .then(function(response){
             console.log(response => response.json());
             return response => response.json()
-          }).then(function(body){
-            console.log(body);
-          }); 
+            }).then(function(body){
+                console.log(body);
+            });
+        }); 
           
           window.location.reload();
     } 
 
     handleChange = (module, index) => {
-        console.log("this change: ", JSON.stringify(module));
-
-        let list = [];
-        let modules = [];
-        module.forEach(function(module) {
-            list.push({label:module.label})
-            modules.push({nom:module.label})
-          });
+        console.log("this change: ", JSON.stringify(module) + " - length:" + module.length);
 
         let apprenant = this.state.apprenant;
-        apprenant.semestre[index].module=modules;
         let provisoire = this.state.moduleProvisoire;
-        provisoire[index] = list;   
+        let modules = this.state.module;
 
-        this.setState({moduleProvisoire:provisoire, apprenant:apprenant});
+        let newMod = {
+            nom : '',
+            semestre : {
+                nom : apprenant.semestre[index].nom,
+                apprenant : {
+                    apprenantId : this.state.apprenant._id,
+                    nom : this.state.apprenant.nom,
+                    prenom : this.state.apprenant.prenom
+                }
+            }
+        }
+        
+        if(module.length > 0) {
+            let nomModule = module[module.length -1].label;
+            apprenant.semestre[index].module.push({nom:nomModule});
+            provisoire[index].push({label:nomModule});
+            newMod.nom = nomModule;         
+        } else {
+            modules.forEach(function(mod) {
+                if(provisoire[index].includes({label:mod.nom})) {
+                    mod.semestre.forEach(function(semestre) {
+                        if(semestre.nom === newMod.semestre.nom) {
+                            let index = semestre.apprenant.indexOf(newMod.semestre.apprenant);
+                            if (index !== -1) semestre.apprenant.splice(index, 1);
+                        }
+                    });
+                }
+            });
+            apprenant.semestre[index].module = [];
+            provisoire[index] = [];
+        }
+        
+        modules.forEach(function(mod) {
+            if(mod.nom === newMod.nom){
+                mod.semestre.forEach(function(semestre) {
+                    if(semestre.nom === newMod.semestre.nom) {
+                        if(!semestre.apprenant.includes(newMod.semestre.apprenant)) {
+                            semestre.apprenant.push(newMod.semestre.apprenant);
+                        }
+                    }
+                });
+            }
+        });
+
+        this.setState({moduleProvisoire : provisoire, apprenant : apprenant, module : modules});
+
+        console.log("moduleProvisoire: ", JSON.stringify(this.state.moduleProvisoire));
+        console.log(" - apprenant: ", JSON.stringify(this.state.apprenant));
+        console.log( " - module: ", JSON.stringify(this.state.module));
     }
 
     render() {

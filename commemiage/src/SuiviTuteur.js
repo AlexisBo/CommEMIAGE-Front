@@ -59,32 +59,29 @@ class SuiviTuteur extends Component {
            
             let list = []; 
             tuteur.module.forEach(function(module) {
-                console.log(module);
-                fetch('http://localhost:3010/modules/get/'+ module.moduleId)
-                .then((resp) => resp.json())
-                .then(function(module) {
-                    console.log("module get: "+ JSON.stringify(module));         
-
-                    module.semestre.forEach(function(semestre) {
-                        list.push({label:module.nom + " - " + semestre.nom,value:{ moduleId : module._id, nom : module.nom }});
-                    });
-                    currentComponent.setState({moduleGet : list});
-                })
+                list.push({label:module.nom + " - " + module.semestre,value:{ semestre: module.semestre, moduleId : module._id, nom : module.nom}});
             });
-        })
+            currentComponent.setState({moduleGet : list});
         
-        fetch('http://localhost:3010/apprenants/')
-        .then((resp) => resp.json())
-        .then(function(data) {
-            console.log("data get: "+ data);
-            var list = [];
-            data.forEach(function(apprenant) {
-                console.log(apprenant);
-                list.push({label:apprenant.prenom + " " + apprenant.nom,value:{ apprenantId : apprenant._id, nom : apprenant.nom, prenom : apprenant.prenom }})
+            list = [];
+            currentComponent.state.moduleGet.forEach(async function(module) {
+                let apprenants = await new Promise((resolve, reject) => {  
+                    fetch('http://localhost:3010/modules/get/' + module.moduleId)
+                    .then((resp) => resp.json())
+                    .then(function(data) {
+                        data.semestre.forEach(function(semestre) {
+                            if(semestre.nom === module.semestre) {
+                                resolve(semestre.apprenant);
+                            }
+                        });
+                    });
+                });
+                apprenants.forEach(function(apprenant) {
+                    list.push({label : apprenant.prenom + " " + apprenant.nom,value : apprenant})
+                });
             });
-            
             currentComponent.setState({apprenantGet : list});
-        })        
+        })  
     }
 
     handleSubmit(event) {
@@ -124,9 +121,9 @@ class SuiviTuteur extends Component {
           });
     }
     
-    handleApprenantChange = (apprenant) => {
+    /*handleApprenantChange = (apprenant) => {
         this.setState({ suivi : {apprenant : apprenant.value} });
-    }
+    }*/
     
     handleModuleChange = (module) => {
         this.setState({ suivi : {module : module.value} });
@@ -155,13 +152,12 @@ class SuiviTuteur extends Component {
                             <div className="row">
                                 <div className="col-md-6">
                                     <label htmlFor="tuteur">Tuteur : {this.state.tuteur.prenom + " " + this.state.tuteur.nom}</label>
-                                    <br />
+                                    <br />          
+                                    <label htmlFor="module">Module :</label>
+                                    <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleModuletChange}/>
                                     
                                     <label htmlFor="apprenant">Apprenant :</label>
                                     <Select id="apprenant" name="apprenant" options={ this.state.apprenantGet } value={apprenant} onChange={this.handleApprenantChange}/>
-                                    
-                                    <label htmlFor="module">Module :</label>
-                                    <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleModuletChange}/>
                                 </div> 
                             </div>
                         </div>

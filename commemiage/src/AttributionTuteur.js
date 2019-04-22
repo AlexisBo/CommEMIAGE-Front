@@ -140,7 +140,7 @@ class AttributionTuteur extends Component {
                     }
                 }
                 if(!exist) {
-                    tuteurs[i].module.push({moduleId : module[index]._id, nom : module[index].nom});
+                    tuteurs[i].module.push({semestre : module[index].semestre[indexSem].nom, moduleId : module[index]._id, nom : module[index].nom});
                 }
             }
         }
@@ -155,11 +155,11 @@ class AttributionTuteur extends Component {
                 <div className="card-body">
                     <div className="row">
                         <div className="col-md-6">
-                            <h5 className="title">{index + 1} Module : {module.nom}</h5>
+                            <h5 className="title">Module n°{index + 1} : {module.nom}</h5>
                             {module.semestre.map( (semestre,indexSem) => {
                                 return (
                                     <div>
-                                        <label htmlFor={semestre.nom}>{indexSem + 1} Semestre : {semestre.nom}</label>
+                                        <label htmlFor={semestre.nom}>Semestre n°{indexSem + 1} : {semestre.nom}</label>
                                         <input type="hidden" id={semestre.nom} name={semestre.nom} value={semestre.nom}/>
                                         
                                         <Select name="tuteur" options={ this.state.tuteurGet } value={semestre.tuteur} onChange={(ev)=>this.handleChange(ev, index, indexSem)} /> 
