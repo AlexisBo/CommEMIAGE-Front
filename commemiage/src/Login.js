@@ -35,10 +35,7 @@ class Login extends Component {
        return (
             <div className="ashier">  
                 <div className="navbar navbar-expand-md navbar-dark bg-indigo navbar-static">
-                    <div class="navbar-brand">
-                        <a href="index.html" class="d-inline-block">
-                            <img src="../../../../global_assets/images/logo_light.png" alt=""/>
-                        </a>
+                    <div className="navbar-brand">
                     </div>
 
                     <div className="d-md-none">
