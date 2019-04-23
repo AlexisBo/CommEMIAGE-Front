@@ -39,8 +39,7 @@ const Path = () => (
               <ul className="navbar-nav ml-md-auto">				
                 <li className="nav-item">
                   <a href="#" className="navbar-nav-link legitRipple">
-                    <i className="icon-switch2"></i>
-                      <Link to="" onClick={deconnexion}></Link>
+                      <Link to="" onClick={deconnexion}><i className="icon-switch2"></i> Logout</Link>
                   </a>
                 </li>
               </ul>
