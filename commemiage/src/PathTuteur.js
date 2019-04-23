@@ -10,19 +10,43 @@ function deconnexion () {
 const Path = () => (
   <Router>
     <div>
-      <ul className="list-inline">
-        <li className="list-inline-item">
-          <u style={{color: "blue"}}><Link to="/">Home</Link></u>
-        </li>
-        <li className="list-inline-item">
-          <u style={{color: "blue"}}><Link to="/suiviTuteur">Suivi tuteur</Link></u>
-        </li>
-        <li className="list-inline-item">
-          <u style={{color: "blue"}}><Link to="" onClick={deconnexion}>Logout</Link></u>
-        </li>
-      </ul>
-      <hr />
 
+
+    <div className="ashier">  
+      <div className="navbar navbar-expand-md navbar-dark bg-indigo navbar-static">
+          <div className="navbar-brand">
+          </div>
+
+          <div className="d-md-none">
+              <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-mobile">
+                  <i className="icon-tree5"></i>
+              </button>
+              <button className="navbar-toggler sidebar-mobile-main-toggle" type="button">
+                  <i className="icon-paragraph-justify3"></i>
+              </button>
+          </div>
+
+          <div className="collapse navbar-collapse" id="navbar-mobile">
+              <ul className="navbar-nav lst">			
+                <li className="itemlst">
+                  <Link to="/"><i className="icon-users"></i>Home</Link>
+                </li>
+                <li className="itemlst">
+                  <Link to="/suiviTuteur"><i className="icon-users"></i>Suivi Tuteur</Link>
+                </li>
+              </ul>
+
+              <ul className="navbar-nav ml-md-auto">				
+                <li className="nav-item">
+                  <a href="#" className="navbar-nav-link legitRipple">
+                    <i className="icon-switch2"></i>
+                      <Link to="" onClick={deconnexion}></Link>
+                  </a>
+                </li>
+              </ul>
+          </div>
+      </div>
+    </div>
       <Route exact path="/" component={Home} />
       <Route path="/suiviTuteur" component={SuiviTuteur} />
     </div>
