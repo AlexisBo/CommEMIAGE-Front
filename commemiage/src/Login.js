@@ -36,6 +36,7 @@ class Login extends Component {
             <div className="ashier">  
                 <div className="navbar navbar-expand-md navbar-dark bg-indigo navbar-static">
                     <div className="navbar-brand">
+                        <img src={require('./ressources/images/logo_light.png')}/>
                     </div>
 
                     <div className="d-md-none">
@@ -93,7 +94,7 @@ class Login extends Component {
                                 </span>
 
                                 <ul class="navbar-nav ml-lg-auto">
-                                    <li class="nav-item"><a href="https://www.univ-evry.fr/accueil.html" class="navbar-nav-link legitRipple" target="_blank"><i class="icon-graduation2  mr-2"></i> Université d'Evry</a></li>                                        
+                                    <li class="nav-item"><a href="https://www.univ-evry.fr/accueil.html" class="navbar-nav-link legitRipple" target="_blank" rel="noopener noreferrer"><i class="icon-graduation2  mr-2"></i> Université d'Evry</a></li>                                        
                                 </ul>
                             </div>
                         </div>
