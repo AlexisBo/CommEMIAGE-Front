@@ -36,7 +36,7 @@ class Login extends Component {
             <div className="ashier">  
                 <div className="navbar navbar-expand-md navbar-dark bg-indigo navbar-static">
                     <div className="navbar-brand">
-                        <img src={require('./ressources/images/logo_light.png')}/>
+                        <img src={require('./ressources/images/logo_light.png')} alt=""/>
                     </div>
 
                     <div className="d-md-none">
