@@ -4,6 +4,7 @@ import CreationModule from "./CreationModule";
 import CreationFiliere from "./CreationFiliere";
 import AttributionTuteur from "./AttributionTuteur";
 import NewTuteur from "./NewTuteur";
+import InscriptionApprenant from "./InscriptionApprenant";
 
 function deconnexion () {
  localStorage.clear();
@@ -45,12 +46,15 @@ const Path = () => (
               <li className="itemlst">
                 <Link to="/attributiontuteur"><i className="icon-users"></i>Attribution tuteur</Link>
               </li>
+              <li className="itemlst">
+                <Link to="/newapprenant"><i className="icon-users"></i>Création Apprenant</Link>
+              </li>
             </ul>
 
             <ul className="navbar-nav ml-md-auto">				
               <li className="nav-item">
                 <a href="#" className="navbar-nav-link legitRipple">                    
-                    <Link to="" onClick={deconnexion}><i className="icon-switch2"></i> Logout</Link>
+                    <Link to="/" onClick={deconnexion}><i className="icon-switch2"></i> Logout</Link>
                 </a>
               </li>
             </ul>
@@ -62,6 +66,7 @@ const Path = () => (
     <Route path="/creationfiliere" component={CreationFiliere} />
     <Route path="/attributiontuteur" component={AttributionTuteur} />
     <Route path="/newtuteur" component={NewTuteur} />
+    <Route path="/newapprenant" component={InscriptionApprenant} />
    </div>
  </Router>
 );

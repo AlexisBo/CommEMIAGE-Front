@@ -85,7 +85,7 @@ class ChoixModuleSemestre extends Component {
                 fetch('http://localhost:3010/modules/')
                 .then((resp) => resp.json())
                 .then(function(module) {
-                    console.log("modules get: "+ module);
+                    console.log("modules get: "+ JSON.stringify(module));
                     let list = [];
                     let modules = [];
                     module.forEach(function(module) {
@@ -163,17 +163,44 @@ class ChoixModuleSemestre extends Component {
         }
         
         if(module.length > 0) {
+            console.log("*** AJOUT DE MODULE ***");
+            //Si module.length > 0 cela veut dire que l'utilisateur
+            // ajoute un element.
+
             let nomModule = module[module.length -1].label;
-            apprenant.semestre[index].module.push({nom:nomModule});
-            provisoire[index].push({label:nomModule});
-            newMod.nom = nomModule;         
-        } else {
+            newMod.nom = nomModule;
+            if(!apprenant.semestre[index].module.some(e => e.nom === nomModule)) {
+                console.log("Module ajouté");
+                apprenant.semestre[index].module.push({nom:nomModule});
+                provisoire[index].push({label:nomModule});
+            }
+            
             modules.forEach(function(mod) {
-                if(provisoire[index].includes({label:mod.nom})) {
+                if(mod.nom === newMod.nom){
                     mod.semestre.forEach(function(semestre) {
                         if(semestre.nom === newMod.semestre.nom) {
-                            let index = semestre.apprenant.indexOf(newMod.semestre.apprenant);
-                            if (index !== -1) semestre.apprenant.splice(index, 1);
+                            //Ainsi, si jamais l'apprenant n'est pas deja present dans ce
+                            // module, on l'ajoute.
+                            if(!semestre.apprenant.some(e => e.apprenantId === newMod.semestre.apprenant.apprenantId)) {
+                                console.log("Apprenant ajouté au module");
+                                semestre.apprenant.push(newMod.semestre.apprenant);
+                            }
+                        }
+                    });
+                }
+            });     
+        } else {
+            console.log("*** RETRAIT DE MODULE ***");
+            //Si module.length = 0 cela veut dire que l'utilisateur
+            // supprime un element.
+
+            modules.forEach(function(mod) {
+                if(provisoire[index].some(e => e.label === mod.nom)) {
+                    mod.semestre.forEach(function(semestre) {
+                        if(semestre.nom === newMod.semestre.nom) {
+                            //Ainsi, pour chaque module a supprimer dans ce semestre,
+                            // on retire l'apprenant de ce cours.
+                            semestre.apprenant.splice(semestre.apprenant.findIndex(e => e.apprenantId === newMod.semestre.apprenant.apprenantId), 1);
                         }
                     });
                 }
@@ -181,24 +208,12 @@ class ChoixModuleSemestre extends Component {
             apprenant.semestre[index].module = [];
             provisoire[index] = [];
         }
-        
-        modules.forEach(function(mod) {
-            if(mod.nom === newMod.nom){
-                mod.semestre.forEach(function(semestre) {
-                    if(semestre.nom === newMod.semestre.nom) {
-                        if(!semestre.apprenant.includes(newMod.semestre.apprenant)) {
-                            semestre.apprenant.push(newMod.semestre.apprenant);
-                        }
-                    }
-                });
-            }
-        });
 
         this.setState({moduleProvisoire : provisoire, apprenant : apprenant, module : modules});
 
-        console.log("moduleProvisoire: ", JSON.stringify(this.state.moduleProvisoire));
+        /*console.log("moduleProvisoire: ", JSON.stringify(this.state.moduleProvisoire));
         console.log(" - apprenant: ", JSON.stringify(this.state.apprenant));
-        console.log( " - module: ", JSON.stringify(this.state.module));
+        console.log( " - module: ", JSON.stringify(this.state.module));*/
     }
 
     render() {
