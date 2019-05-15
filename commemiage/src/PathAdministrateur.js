@@ -5,6 +5,7 @@ import CreationFiliere from "./CreationFiliere";
 import AttributionTuteur from "./AttributionTuteur";
 import NewTuteur from "./NewTuteur";
 import InscriptionApprenant from "./InscriptionApprenant";
+import DashboardAdmin from "./DashboardAdmin";
 
 function deconnexion () {
  localStorage.clear();
@@ -32,7 +33,7 @@ const Path = () => (
         <div className="collapse navbar-collapse" id="navbar-mobile">
             <ul className="navbar-nav lst">			
               <li className="itemlst">
-                <Link to="/"><i className="icon-users"></i>Home</Link>
+                <Link to="/dashboard"><i className="icon-users"></i>Dashboard</Link>
               </li>
               <li className="itemlst">
                 <Link to="/creationfiliere"><i className="icon-users"></i>Création filière</Link>
@@ -61,7 +62,7 @@ const Path = () => (
         </div>
       </div>
     </div>
-    <Route exact path="/" component={Home} />
+    <Route path="/dashboard" component={DashboardAdmin} />
     <Route path="/creationmodule" component={CreationModule} />
     <Route path="/creationfiliere" component={CreationFiliere} />
     <Route path="/attributiontuteur" component={AttributionTuteur} />
@@ -69,12 +70,6 @@ const Path = () => (
     <Route path="/newapprenant" component={InscriptionApprenant} />
    </div>
  </Router>
-);
-
-const Home = () => (
- <div>
-   <h2>Home</h2>
- </div>
 );
 
 export default Path;
