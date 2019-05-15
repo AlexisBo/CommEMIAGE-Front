@@ -4,7 +4,7 @@ import ChoixModuleSemestre from "./ChoixModuleSemestre";
 
 function deconnexion () {
   localStorage.clear();
-  window.location.reload();
+  window.location.href();
 }
 
 const Path = () => (
