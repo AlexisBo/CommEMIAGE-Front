@@ -6,6 +6,7 @@ import './ressources/css/colors.css';
 import './ressources/css/layout.css';
 import './ressources/css/icons/icomoon/styles.css';
 import './ressources/css/custom.css';
+import './ressources/css/custom.sass';
 import './ressources/App.css';
 import Administrateur from './PathAdministrateur';
 import Tuteur from './PathTuteur';

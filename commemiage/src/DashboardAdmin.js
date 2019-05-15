@@ -9,8 +9,51 @@ class DashboardAdmin extends Component {
         return (
             <div className="content">
                 <div className="row">
-                    <div className="col-md-6">
+                    <div className="col-md-8">
                         <div className="card">
+                            <div className="card-header">
+                                <h4 className="card-title">Choix de l'année de formation</h4>
+                            </div>
+                            <div className="card-body form-group">                                                    
+                                <div class="flex-parent">
+                                    <div class="input-flex-container">
+                                        <div class="input">
+                                            <span data-year="2010"></span>
+                                        </div>
+                                        <div class="input">
+                                            <span data-year="2011"></span>
+                                        </div>
+                                        <div class="input active">
+                                            <span data-year="2012"></span>
+                                        </div>
+                                        <div class="input">
+                                            <span data-year="2013"></span>
+                                        </div>
+                                        <div class="input">
+                                            <span data-year="2014"></span>
+                                        </div>
+                                        <div class="input">
+                                            <span data-year="2015"></span>
+                                        </div>
+                                        <div class="input">
+                                            <span data-year="2016"></span>
+                                        </div>
+                                        <div class="input">
+                                            <span data-year="2017"></span>
+                                        </div>
+                                        <div class="input">
+                                            <span data-year="2018"></span>
+                                        </div>
+                                        <div class="input">
+                                            <span data-year="2019"></span>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+                    <div className="col-md-4">
+                        <div className="card app">
                             <div className="card-header">
                                 <h4 className="card-title">Choix apprenant</h4>
                             </div>
