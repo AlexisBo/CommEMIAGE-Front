@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import SuiviTuteur from "./SuiviTuteur";
+import DashboardTuteur from "./DashboardTuteur";
 
 function deconnexion () {
   localStorage.clear();
@@ -30,7 +31,7 @@ const Path = () => (
         <div className="collapse navbar-collapse" id="navbar-mobile">
             <ul className="navbar-nav lst">			
               <li className="itemlst">
-                <Link to="/"><i className="icon-users"></i>Home</Link>
+                <Link to="/dashboard"><i className="icon-users"></i>Dashboard</Link>
               </li>
               <li className="itemlst">
                 <Link to="/suiviTuteur"><i className="icon-users"></i>Suivi Tuteur</Link>
@@ -47,7 +48,7 @@ const Path = () => (
         </div>
       </div>
     </div>
-      <Route exact path="/" component={Home} />
+      <Route path="/dashboard" component={DashboardTuteur} />
       <Route path="/suiviTuteur" component={SuiviTuteur} />
     </div>
   </Router>
