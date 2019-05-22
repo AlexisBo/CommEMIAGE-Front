@@ -77,28 +77,30 @@ class CreationFiliere extends Component {
     render() {
         const { module } = this.state.module;
 
-        return (
-            <div className="creation-filiere col-md-6">
-                <div className="card">
-                    <div className="card-header">
-                        <h4 className="card-title">Création d'une filière</h4>
+        return (            
+            <div className="content">
+                <div className="creation-filiere col-md-6">
+                    <div className="card">
+                        <div className="card-header">
+                            <h4 className="card-title">Création d'une filière</h4>
+                        </div>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="card-body form-group">
+                                
+                                <label>Saisir le nom de la filière</label>
+                                <input style={{marginBottom: 15 + 'px', marginTop: 0 + 'px'}} type="text" className="form-control" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} id="nom" name="nom"/>
+                                
+                                <label>Saisir la description de la filière</label>
+                                <input style={{marginBottom: 15 + 'px', marginTop: 0 + 'px'}} type="text" className="form-control" value={this.state.description} onChange={(ev)=>this.setState({description:ev.target.value})} id="description" name="description"/>
+                                
+                                <label htmlFor="module">Modules :</label>
+                                <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleChange} isMulti />                  
+                            </div>
+                            <div className="card-footer">
+                                <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Création filière </button>
+                            </div>
+                        </form>
                     </div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="card-body form-group">
-                            
-                            <label>Saisir le nom de la filière</label>
-                            <input style={{marginBottom: 15 + 'px', marginTop: 0 + 'px'}} type="text" className="form-control" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} id="nom" name="nom"/>
-                            
-                            <label>Saisir la description de la filière</label>
-                            <input style={{marginBottom: 15 + 'px', marginTop: 0 + 'px'}} type="text" className="form-control" value={this.state.description} onChange={(ev)=>this.setState({description:ev.target.value})} id="description" name="description"/>
-                            
-                            <label htmlFor="module">Modules :</label>
-                            <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleChange} isMulti />                  
-                        </div>
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Création filière </button>
-                        </div>
-                    </form>
                 </div>
             </div>
         )

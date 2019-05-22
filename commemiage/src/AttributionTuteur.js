@@ -172,18 +172,20 @@ class AttributionTuteur extends Component {
             )
         });
 
-        return (
-            <div className="attribution-tuteur col-md-6">
-                <div className="card">
-                    <div className="card-header">
-                        <h4 className="title">Choix des tuteurs par semestres</h4>
-                    </div>
-                    <form onSubmit={this.handleSubmit}>
-                        { modules }
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Choix tuteurs </button>
+        return (            
+            <div className="content">
+                <div className="attribution-tuteur col-md-6">
+                    <div className="card">
+                        <div className="card-header">
+                            <h4 className="title">Choix des tuteurs par semestres</h4>
                         </div>
-                    </form>
+                        <form onSubmit={this.handleSubmit}>
+                            { modules }
+                            <div className="card-footer">
+                                <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Choix tuteurs </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         )

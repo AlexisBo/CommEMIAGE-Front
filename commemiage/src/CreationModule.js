@@ -59,28 +59,30 @@ class CreationModule extends Component {
     }
 
     render() {
-        return (
-            <div className="creation-module col-md-6">
-                <div className="card">
-                    <div className="card-header">
-                        <h4 className="title">Création d'un module</h4>
-                    </div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="card-body">
+        return (            
+            <div className="content">
+                <div className="creation-module col-md-6">
+                    <div className="card">
+                        <div className="card-header">
+                            <h4 className="title">Création d'un module</h4>
+                        </div>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="card-body">
 
-                            <label htmlFor="nom">Saisir le nom du module</label>
-                            <input type="text" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} className="form-control" id="nom" name="nom"/>
-                            
-                            <label htmlFor="coefficient">Saisir le coefficient</label>
-                            <input type="text" value={this.state.coefficient} onChange={(ev)=>this.setState({coefficient:ev.target.value})} className="form-control" id="coefficient" name="coefficient"/>
-                            
-                            <label htmlFor="seuil">Saisir seuil de rattrapage</label>
-                            <input type="text" value={this.state.seuil} onChange={(ev)=>this.setState({seuil:ev.target.value})} className="form-control" id="seuil" name="seuil"/>                        
-                        </div>
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Création module </button>
-                        </div>
-                    </form>
+                                <label htmlFor="nom">Saisir le nom du module</label>
+                                <input type="text" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} className="form-control" id="nom" name="nom"/>
+                                
+                                <label htmlFor="coefficient">Saisir le coefficient</label>
+                                <input type="text" value={this.state.coefficient} onChange={(ev)=>this.setState({coefficient:ev.target.value})} className="form-control" id="coefficient" name="coefficient"/>
+                                
+                                <label htmlFor="seuil">Saisir seuil de rattrapage</label>
+                                <input type="text" value={this.state.seuil} onChange={(ev)=>this.setState({seuil:ev.target.value})} className="form-control" id="seuil" name="seuil"/>                        
+                            </div>
+                            <div className="card-footer">
+                                <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Création module </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         )

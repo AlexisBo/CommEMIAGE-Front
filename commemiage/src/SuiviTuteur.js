@@ -142,65 +142,65 @@ class SuiviTuteur extends Component {
         const { apprenant } = this.state.suivi.apprenant.prenom + " " +this.state.suivi.apprenant.nom;
 
         return (
-            <form onSubmit={this.handleSubmit}>
-                <div className="choix-etudiant col-md-6">
-                    <div className="card">
-                        <div className="card-header">
-                            <h4 className="title">Selection des criteres</h4>
-                        </div>
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <label htmlFor="tuteur">Tuteur : {this.state.tuteur.prenom + " " + this.state.tuteur.nom}</label>
-                                    <br />          
-                                    <label htmlFor="module">Module :</label>
-                                    <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleModuletChange}/>
-                                    
-                                    <label htmlFor="apprenant">Apprenant :</label>
-                                    <Select id="apprenant" name="apprenant" options={ this.state.apprenantGet } value={apprenant} onChange={this.handleApprenantChange}/>
-                                </div> 
+            <div className="content">
+                <form onSubmit={this.handleSubmit}>
+                    <div className="choix-etudiant col-md-6">
+                        <div className="card">
+                            <div className="card-header">
+                                <h4 className="title">Selection des criteres</h4>
+                            </div>
+                            <div className="card-body">
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <label htmlFor="tuteur">Tuteur : {this.state.tuteur.prenom + " " + this.state.tuteur.nom}</label>
+                                        <br />          
+                                        <label htmlFor="module">Module :</label>
+                                        <Select id="module" name="module" options={ this.state.moduleGet } value={module} onChange={this.handleModuletChange}/>
+                                        
+                                        <label htmlFor="apprenant">Apprenant :</label>
+                                        <Select id="apprenant" name="apprenant" options={ this.state.apprenantGet } value={apprenant} onChange={this.handleApprenantChange}/>
+                                    </div> 
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <br />
+                    <br />
 
-                <div className="suivi-tuteur col-md-6">
-                    <div className="card">
-                        <div className="card-header">
-                            <h4 className="title">Fiche de suivi</h4>
-                        </div>
-                        <div className="card-body">
-
-                            <div className="row">
-                                <h4 style={{marginLeft: 286 + 'px'}}>Synthèse tutorat</h4>
+                    <div className="suivi-tuteur col-md-6">
+                        <div className="card">
+                            <div className="card-header">
+                                <h4 className="title">Fiche de suivi</h4>
                             </div>
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <h5>Liste des questions concernant le module</h5>
-                                    <textarea id="questions" value={this.state.suivi.questions} onChange={this.handleQuestionsChange} className="form-control" rows="5" cols="33">
-                                    </textarea>
-                                </div>  
-                            </div>
+                            <div className="card-body">
 
-                            <div className="row">
-                                <h4 style={{marginLeft: 286 + 'px'}}>Synthèse générale</h4>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <h5>Remarques et suggestions</h5>
-                                    <textarea id="remarques" value={this.state.suivi.remarques} onChange={this.handleRemarquesChange} className="form-control" rows="5" cols="33">
-                                    </textarea>
-                                </div>  
+                                <div className="row">
+                                    <h4 style={{marginLeft: 286 + 'px'}}>Synthèse tutorat</h4>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <h5>Liste des questions concernant le module</h5>
+                                        <textarea id="questions" value={this.state.suivi.questions} onChange={this.handleQuestionsChange} className="form-control" rows="5" cols="33">
+                                        </textarea>
+                                    </div>  
+                                </div>
+
+                                <div className="row">
+                                    <h4 style={{marginLeft: 286 + 'px'}}>Synthèse générale</h4>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <h5>Remarques et suggestions</h5>
+                                        <textarea id="remarques" value={this.state.suivi.remarques} onChange={this.handleRemarquesChange} className="form-control" rows="5" cols="33">
+                                        </textarea>
+                                    </div>  
+                                </div>
+                                <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Enregistrer</button>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="card-footer">
-                    <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Enregistrer</button>
-                </div>
-            </form>
+                </form>
+            </div>
         )
     }
 
