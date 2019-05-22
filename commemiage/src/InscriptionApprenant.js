@@ -104,33 +104,35 @@ class InscriptionApprenant extends Component {
         const { filiere } = this.state.filiere;
 
         return (
-            <div className="inscription-apprenant col-md-6">
-                <div className="card">
-                    <div className="card-header">
-                        <h4 className="title">Inscription de l'apprenant</h4>
+            <div className="content">
+                <div className="inscription-apprenant col-md-6">
+                    <div className="card">
+                        <div className="card-header">
+                            <h4 className="title">Inscription de l'apprenant</h4>
+                        </div>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="card-body">
+
+                                <label htmlFor="nom">Nom :</label>
+                                <input type="text" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} className="form-control" id="nom" name="nom"/>
+                                
+                                <label htmlFor="prenom">Prénom :</label>
+                                <input type="text" value={this.state.prenom} onChange={(ev)=>this.setState({prenom:ev.target.value})} className="form-control" id="prenom" name="prenom"/>
+                                
+                                <label htmlFor="adresse">Adresse postale :</label>
+                                <input type="text" value={this.state.adresse} onChange={(ev)=>this.setState({adresse:ev.target.value})} className="form-control" id="adresse" name="adresse"/>
+
+                                <label htmlFor="mail">Adresse mail :</label>
+                                <input type="text" value={this.state.email} onChange={(ev)=>this.setState({email:ev.target.value})} className="form-control" id="email" name="email"/>
+
+                                <label htmlFor="filiere">Filière :</label>
+                                <Select id="filiere" options={ this.state.filiereGet } value={filiere} onChange={this.handleChange} name="filiere" />
+                            </div>
+                            <div className="card-footer">
+                                <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>S'inscrire </button>
+                            </div>
+                        </form>
                     </div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="card-body">
-
-                            <label htmlFor="nom">Nom :</label>
-                            <input type="text" value={this.state.nom} onChange={(ev)=>this.setState({nom:ev.target.value})} className="form-control" id="nom" name="nom"/>
-                            
-                            <label htmlFor="prenom">Prénom :</label>
-                            <input type="text" value={this.state.prenom} onChange={(ev)=>this.setState({prenom:ev.target.value})} className="form-control" id="prenom" name="prenom"/>
-                            
-                            <label htmlFor="adresse">Adresse postale :</label>
-                            <input type="text" value={this.state.adresse} onChange={(ev)=>this.setState({adresse:ev.target.value})} className="form-control" id="adresse" name="adresse"/>
-
-                            <label htmlFor="mail">Adresse mail :</label>
-                            <input type="text" value={this.state.email} onChange={(ev)=>this.setState({email:ev.target.value})} className="form-control" id="email" name="email"/>
-
-                            <label htmlFor="filiere">Filière :</label>
-                            <Select id="filiere" options={ this.state.filiereGet } value={filiere} onChange={this.handleChange} name="filiere" />
-                        </div>
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>S'inscrire </button>
-                        </div>
-                    </form>
                 </div>
             </div>
         )

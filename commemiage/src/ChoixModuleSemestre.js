@@ -234,17 +234,19 @@ class ChoixModuleSemestre extends Component {
         });
 
         return (
-            <div className="choix-module col-md-6">
-                <div className="card">
-                    <div className="card-header">
-                        <h4 className="title">Choix des modules par semestres</h4>
-                    </div>
-                    <form onSubmit={this.handleSubmit}>
-                        { semestres }
-                        <div className="card-footer">
-                            <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Choix modules </button>
+            <div className="content">
+                <div className="choix-module col-md-6">
+                    <div className="card">
+                        <div className="card-header">
+                            <h4 className="title">Choix des modules par semestres</h4>
                         </div>
-                    </form>
+                        <form onSubmit={this.handleSubmit}>
+                            { semestres }
+                            <div className="card-footer">
+                                <button type="submit" className="btn btn-primary" style={{ marginTop: 10+'px' }}>Choix modules </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         );          
