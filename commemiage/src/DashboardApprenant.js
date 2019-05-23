@@ -10,7 +10,7 @@ class DashboardApprenant extends Component {
             <div className="content">
                 <div className="row">
                     <div className="col-md-4">
-                        <div className="card app">
+                        <div className="card">
                             <div className="card-header">
                                 <h4 className="card-title">Choix du semestre</h4>
                             </div>
@@ -25,8 +25,28 @@ class DashboardApprenant extends Component {
                                 </select>  
                             </div>
                         </div>
+                        <div class="card border-left-3 border-left-danger rounded-left-0">
+                            <div class="card-body">
+                                <div class="d-sm-flex flex-sm-nowrap">
+                                    <div style={{textAlign: "left"}}>
+                                        <h6 class="font-weight-semibold">Étudiant 1</h6>
+                                        <ul class="list list-unstyled mb-0">
+                                            <li>Formation : <span class="font-weight-semibold">eM1MIA</span></li>
+                                            <li>Date début formation : <span class="font-weight-semibold">01/09/18</span></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="text-sm-right mb-0 mt-3 mt-sm-0 ml-auto">
+                                        <h6>Âge : <span class="font-weight-semibold">22 ans</span></h6>
+                                        <ul class="list list-unstyled mb-0">
+                                            <li>État : <span class="badge bg-teal-400">En cours</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-8">
                         <div className="card">
                             <div className="card-header">
                                 <h4 className="card-title">Notes de l'apprenant S1 2018</h4>
@@ -101,31 +121,8 @@ class DashboardApprenant extends Component {
                                             <span class="text-muted">Eminuit autem inter humilia supergressa iam impotentia fines mediocrium delictorum.</span>
                                         </td>
                                     </tr>
-
                                 </tbody>
                             </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div class="card border-left-3 border-left-danger rounded-left-0">
-                            <div class="card-body">
-                                <div class="d-sm-flex flex-sm-nowrap">
-                                    <div style={{textAlign: "left"}}>
-                                        <h6 class="font-weight-semibold">Étudiant 1</h6>
-                                        <ul class="list list-unstyled mb-0">
-                                            <li>Formation : <span class="font-weight-semibold">eM1MIA</span></li>
-                                            <li>Date début formation : <span class="font-weight-semibold">01/09/18</span></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="text-sm-right mb-0 mt-3 mt-sm-0 ml-auto">
-                                        <h6>Âge : <span class="font-weight-semibold">22 ans</span></h6>
-                                        <ul class="list list-unstyled mb-0">
-                                            <li>État : <span class="badge bg-teal-400">En cours</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
