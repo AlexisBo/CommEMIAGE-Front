@@ -92,7 +92,7 @@ class DashboardAdmin extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-md-8">
                         <div className="card">
                             <div className="card-header">
                                 <h4 className="card-title">Notes de l'apprenant</h4>
@@ -170,16 +170,6 @@ class DashboardAdmin extends Component {
 
                                 </tbody>
                             </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="card">
-                            <div className="card-header">
-                                <h4 className="card-title">Commentaires</h4>
-                            </div>
-                            <div className="card-body">
-                            <textarea rows="3" cols="3" class="form-control" placeholder="Saisissez un commentaire concernant l'apprenant"></textarea>
                             </div>
                         </div>
                     </div>
