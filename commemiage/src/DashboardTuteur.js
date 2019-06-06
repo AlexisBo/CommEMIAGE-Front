@@ -55,47 +55,25 @@ class DashboardTuteur extends Component {
                     <div className="col-md-4">
                         <div className="card app">
                             <div className="card-header">
-                                <h4 className="card-title">Choix apprenant</h4>
+                                <h4 className="card-title">Choix modules</h4>
                             </div>
                             <div className="card-body form-group">                                                    
                                 <select id="apprenant" className="form-control" name="apprenant">
-                                    <option>Étudiant 1</option>
-                                    <option>Étudiant 2</option>
-                                    <option>Étudiant 3</option>
-                                    <option>Étudiant 4</option>
-                                    <option>Étudiant 5</option>
+                                    <option>Module 1</option>
+                                    <option>Module 2</option>
+                                    <option>Module 3</option>
+                                    <option>Module 4</option>
+                                    <option>Module 5</option>
                                 </select>  
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="row">                    
-                    <div className="col-md-4">
-                        <div class="card border-left-3 border-left-danger rounded-left-0">
-                            <div class="card-body">
-                                <div class="d-sm-flex flex-sm-nowrap">
-                                    <div style={{textAlign: "left"}}>
-                                        <h6 class="font-weight-semibold">Étudiant 1</h6>
-                                        <ul class="list list-unstyled mb-0">
-                                            <li>Formation : <span class="font-weight-semibold">eM1MIA</span></li>
-                                            <li>Date début formation : <span class="font-weight-semibold">01/09/18</span></li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="text-sm-right mb-0 mt-3 mt-sm-0 ml-auto">
-                                        <h6>Âge : <span class="font-weight-semibold">22 ans</span></h6>
-                                        <ul class="list list-unstyled mb-0">
-                                            <li>État : <span class="badge bg-teal-400">En cours</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="col-md-8">
+                <div className="row">
+                    <div className="col-md-12">
                         <div className="card">
                             <div className="card-header">
-                                <h4 className="card-title">Notes de l'apprenant</h4>
+                                <h4 className="card-title">Notes des apprenants</h4>
                             </div>
                             <div className="table-responsive">
                                 <table class="table text-nowrap">
@@ -110,8 +88,7 @@ class DashboardTuteur extends Component {
                                 <tbody>
                                     <tr>
                                         <td class="text-center">
-                                            <h6 class="mb-0">MEGL</h6>                                            
-                                            <div class="font-size-sm text-muted line-height-1">COJEAN</div>
+                                            <h6 class="mb-0">Apprenant 1</h6>
                                         </td>
                                         <td class="text-center">                                            
                                             <a href="#" class="btn bg-teal-400 rounded-round btn-icon btn-sm legitRipple">
@@ -130,12 +107,11 @@ class DashboardTuteur extends Component {
 
                                     <tr>
                                         <td class="text-center">
-                                            <h6 class="mb-0">ANALDON</h6>
-                                            <div class="font-size-sm text-muted line-height-1">UZARRALDE</div>
+                                            <h6 class="mb-0">Apprenant 2</h6>
                                         </td>
                                         <td class="text-center">                                            
                                             <a href="#" class="btn bg-teal-400 rounded-round btn-icon btn-sm legitRipple">
-                                                <span class="letter-icon">3</span>
+                                                <span class="letter-icon">4</span>
                                             </a>
                                         </td>
                                         <td class="text-center">
@@ -150,12 +126,11 @@ class DashboardTuteur extends Component {
 
                                     <tr>
                                         <td class="text-center">
-                                            <h6 class="mb-0">CRYSEC</h6>
-                                            <div class="font-size-sm text-muted line-height-1">ANGEL</div>
+                                            <h6 class="mb-0">Apprenant 3</h6>
                                         </td>
                                         <td class="text-center">                                            
                                             <a href="#" class="btn bg-teal-400 rounded-round btn-icon btn-sm legitRipple">
-                                                <span class="letter-icon">3</span>
+                                                <span class="letter-icon">4</span>
                                             </a>
                                         </td>
                                         <td class="text-center">
