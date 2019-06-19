@@ -105,7 +105,7 @@ class InscriptionApprenant extends Component {
 
         return (
             <div className="content">
-                <div className="inscription-apprenant col-md-6">
+                <div className="creation-apprenant col-md-6">
                     <div className="card">
                         <div className="card-header">
                             <h4 className="title">Inscription de l'apprenant</h4>

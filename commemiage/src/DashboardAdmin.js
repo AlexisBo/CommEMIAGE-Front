@@ -15,36 +15,36 @@ class DashboardAdmin extends Component {
                                 <h4 className="card-title">Choix de l'année de formation</h4>
                             </div>
                             <div className="card-body form-group">                                                    
-                                <div class="flex-parent">
-                                    <div class="input-flex-container">
-                                        <div class="input">
+                                <div className="flex-parent">
+                                    <div className="input-flex-container">
+                                        <div className="input">
                                             <span data-year="2010"></span>
                                         </div>
-                                        <div class="input">
+                                        <div className="input">
                                             <span data-year="2011"></span>
                                         </div>
-                                        <div class="input active">
+                                        <div className="input active">
                                             <span data-year="2012"></span>
                                         </div>
-                                        <div class="input">
+                                        <div className="input">
                                             <span data-year="2013"></span>
                                         </div>
-                                        <div class="input">
+                                        <div className="input">
                                             <span data-year="2014"></span>
                                         </div>
-                                        <div class="input">
+                                        <div className="input">
                                             <span data-year="2015"></span>
                                         </div>
-                                        <div class="input">
+                                        <div className="input">
                                             <span data-year="2016"></span>
                                         </div>
-                                        <div class="input">
+                                        <div className="input">
                                             <span data-year="2017"></span>
                                         </div>
-                                        <div class="input">
+                                        <div className="input">
                                             <span data-year="2018"></span>
                                         </div>
-                                        <div class="input">
+                                        <div className="input">
                                             <span data-year="2019"></span>
                                         </div>
                                     </div>
@@ -71,21 +71,21 @@ class DashboardAdmin extends Component {
                 </div>
                 <div className="row">                    
                     <div className="col-md-4">
-                        <div class="card border-left-3 border-left-danger rounded-left-0">
-                            <div class="card-body">
-                                <div class="d-sm-flex flex-sm-nowrap">
+                        <div className="card border-left-3 border-left-danger rounded-left-0">
+                            <div className="card-body">
+                                <div className="d-sm-flex flex-sm-nowrap">
                                     <div style={{textAlign: "left"}}>
-                                        <h6 class="font-weight-semibold">Étudiant 1</h6>
-                                        <ul class="list list-unstyled mb-0">
-                                            <li>Formation : <span class="font-weight-semibold">eM1MIA</span></li>
-                                            <li>Date début formation : <span class="font-weight-semibold">01/09/18</span></li>
+                                        <h6 className="font-weight-semibold">Étudiant 1</h6>
+                                        <ul className="list list-unstyled mb-0">
+                                            <li>Formation : <span className="font-weight-semibold">eM1MIA</span></li>
+                                            <li>Date début formation : <span className="font-weight-semibold">01/09/18</span></li>
                                         </ul>
                                     </div>
 
-                                    <div class="text-sm-right mb-0 mt-3 mt-sm-0 ml-auto">
-                                        <h6>Âge : <span class="font-weight-semibold">22 ans</span></h6>
-                                        <ul class="list list-unstyled mb-0">
-                                            <li>État : <span class="badge bg-teal-400">En cours</span></li>
+                                    <div className="text-sm-right mb-0 mt-3 mt-sm-0 ml-auto">
+                                        <h6>Âge : <span className="font-weight-semibold">22 ans</span></h6>
+                                        <ul className="list list-unstyled mb-0">
+                                            <li>État : <span className="badge bg-teal-400">En cours</span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@ class DashboardAdmin extends Component {
                                 <h4 className="card-title">Notes de l'apprenant</h4>
                             </div>
                             <div className="table-responsive">
-                                <table class="table text-nowrap">
+                                <table className="table text-nowrap">
                                 <thead>
                                     <tr>
                                         <th style={{"width": 300 + "px"}}>Modules</th>
@@ -109,62 +109,62 @@ class DashboardAdmin extends Component {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td class="text-center">
-                                            <h6 class="mb-0">MEGL</h6>                                            
-                                            <div class="font-size-sm text-muted line-height-1">COJEAN</div>
+                                        <td className="text-center">
+                                            <h6 className="mb-0">MEGL</h6>                                            
+                                            <div className="font-size-sm text-muted line-height-1">COJEAN</div>
                                         </td>
-                                        <td class="text-center">                                            
-                                            <a href="#" class="btn bg-teal-400 rounded-round btn-icon btn-sm legitRipple">
-                                                <span class="letter-icon">4</span>
+                                        <td className="text-center">                                            
+                                            <a href="#" className="btn bg-teal-400 rounded-round btn-icon btn-sm legitRipple">
+                                                <span className="letter-icon">4</span>
                                             </a>
                                         </td>
-                                        <td class="text-center">
-                                            <h6 class="mb-0">12</h6>
-                                            <div class="font-size-sm text-muted line-height-1">/20</div>
+                                        <td className="text-center">
+                                            <h6 className="mb-0">12</h6>
+                                            <div className="font-size-sm text-muted line-height-1">/20</div>
                                         </td>
-                                        <td class="text-center">
-                                            <div class="font-weight-semibold">Lorem Ipsum</div>
-                                            <span class="text-muted">Eminuit autem inter humilia supergressa iam impotentia fines mediocrium delictorum.</span>
+                                        <td className="text-center">
+                                            <div className="font-weight-semibold">Lorem Ipsum</div>
+                                            <span className="text-muted">Eminuit autem inter humilia supergressa iam impotentia fines mediocrium delictorum.</span>
                                         </td>
                                     </tr>
 
                                     <tr>
-                                        <td class="text-center">
-                                            <h6 class="mb-0">ANALDON</h6>
-                                            <div class="font-size-sm text-muted line-height-1">UZARRALDE</div>
+                                        <td className="text-center">
+                                            <h6 className="mb-0">ANALDON</h6>
+                                            <div className="font-size-sm text-muted line-height-1">UZARRALDE</div>
                                         </td>
-                                        <td class="text-center">                                            
-                                            <a href="#" class="btn bg-teal-400 rounded-round btn-icon btn-sm legitRipple">
-                                                <span class="letter-icon">3</span>
+                                        <td className="text-center">                                            
+                                            <a href="#" className="btn bg-teal-400 rounded-round btn-icon btn-sm legitRipple">
+                                                <span className="letter-icon">3</span>
                                             </a>
                                         </td>
-                                        <td class="text-center">
-                                            <h6 class="mb-0">16</h6>
-                                            <div class="font-size-sm text-muted line-height-1">/20</div>
+                                        <td className="text-center">
+                                            <h6 className="mb-0">16</h6>
+                                            <div className="font-size-sm text-muted line-height-1">/20</div>
                                         </td>
-                                        <td class="text-center">
-                                            <div class="font-weight-semibold">Lorem Ipsum</div>
-                                            <span class="text-muted">Eminuit autem inter humilia supergressa iam impotentia fines mediocrium delictorum.</span>
+                                        <td className="text-center">
+                                            <div className="font-weight-semibold">Lorem Ipsum</div>
+                                            <span className="text-muted">Eminuit autem inter humilia supergressa iam impotentia fines mediocrium delictorum.</span>
                                         </td>
                                     </tr>
 
                                     <tr>
-                                        <td class="text-center">
-                                            <h6 class="mb-0">CRYSEC</h6>
-                                            <div class="font-size-sm text-muted line-height-1">ANGEL</div>
+                                        <td className="text-center">
+                                            <h6 className="mb-0">CRYSEC</h6>
+                                            <div className="font-size-sm text-muted line-height-1">ANGEL</div>
                                         </td>
-                                        <td class="text-center">                                            
-                                            <a href="#" class="btn bg-teal-400 rounded-round btn-icon btn-sm legitRipple">
-                                                <span class="letter-icon">3</span>
+                                        <td className="text-center">                                            
+                                            <a href="#" className="btn bg-teal-400 rounded-round btn-icon btn-sm legitRipple">
+                                                <span className="letter-icon">3</span>
                                             </a>
                                         </td>
-                                        <td class="text-center">
-                                            <h6 class="mb-0">8</h6>
-                                            <div class="font-size-sm text-muted line-height-1">/20</div>
+                                        <td className="text-center">
+                                            <h6 className="mb-0">8</h6>
+                                            <div className="font-size-sm text-muted line-height-1">/20</div>
                                         </td>
-                                        <td class="text-center">
-                                            <div class="font-weight-semibold">Lorem Ipsum</div>
-                                            <span class="text-muted">Eminuit autem inter humilia supergressa iam impotentia fines mediocrium delictorum.</span>
+                                        <td className="text-center">
+                                            <div className="font-weight-semibold">Lorem Ipsum</div>
+                                            <span className="text-muted">Eminuit autem inter humilia supergressa iam impotentia fines mediocrium delictorum.</span>
                                         </td>
                                     </tr>
 

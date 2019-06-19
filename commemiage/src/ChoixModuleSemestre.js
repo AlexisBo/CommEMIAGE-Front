@@ -222,7 +222,7 @@ class ChoixModuleSemestre extends Component {
             return (
                 <div className="card-body">
                     <div className="row">
-                            <div className="col-md-6">
+                            <div className="col-md-6" style={{margin: 'auto'}}>
                                 <label htmlFor="nom">{semestre.nom}</label>
                                 <input type="hidden" id={"nom-" + semestre.nom} name="nom" value={semestre.nom}/>
     

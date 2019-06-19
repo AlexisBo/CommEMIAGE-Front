@@ -154,7 +154,7 @@ class AttributionTuteur extends Component {
             return (
                 <div className="card-body">
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-6" style={{margin: 'auto'}}>
                             <h5 className="title">Module n°{index + 1} : {module.nom}</h5>
                             {module.semestre.map( (semestre,indexSem) => {
                                 return (

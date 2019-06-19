@@ -23,3 +23,7 @@ a:hover{
 .app{
     height: 209px;
 }
+
+.creation-filiere, .creation-module, .creation-tuteur, .creation-apprenant, .attribution-tuteur, .choix-etudiant, .suivi-tuteur, .choix-module{
+    margin: auto !important;
+}

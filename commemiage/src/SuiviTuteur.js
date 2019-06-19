@@ -151,7 +151,7 @@ class SuiviTuteur extends Component {
                             </div>
                             <div className="card-body">
                                 <div className="row">
-                                    <div className="col-md-6">
+                                    <div className="col-md-6" style={{margin: 'auto'}}>
                                         <label htmlFor="tuteur">Tuteur : {this.state.tuteur.prenom + " " + this.state.tuteur.nom}</label>
                                         <br />          
                                         <label htmlFor="module">Module :</label>
@@ -178,7 +178,7 @@ class SuiviTuteur extends Component {
                                     <h4 style={{marginLeft: 286 + 'px'}}>Synthèse tutorat</h4>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-6">
+                                    <div className="col-md-6" style={{margin: 'auto'}}>
                                         <h5>Liste des questions concernant le module</h5>
                                         <textarea id="questions" value={this.state.suivi.questions} onChange={this.handleQuestionsChange} className="form-control" rows="5" cols="33">
                                         </textarea>
@@ -189,7 +189,7 @@ class SuiviTuteur extends Component {
                                     <h4 style={{marginLeft: 286 + 'px'}}>Synthèse générale</h4>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-6">
+                                    <div className="col-md-6" style={{margin: 'auto'}}>
                                         <h5>Remarques et suggestions</h5>
                                         <textarea id="remarques" value={this.state.suivi.remarques} onChange={this.handleRemarquesChange} className="form-control" rows="5" cols="33">
                                         </textarea>

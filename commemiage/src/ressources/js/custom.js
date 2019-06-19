@@ -5,7 +5,7 @@
  *  Place here all your custom js. Make sure it's loaded after app.js
  *
  * ---------------------------------------------------------------------------- */
-$(function(){
+ $(function(){
 	var inputs = $('.input');
 	var paras = $('.description-flex-container').find('p');
 	$(inputs).click(function(){
